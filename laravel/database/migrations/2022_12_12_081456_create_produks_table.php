@@ -20,8 +20,9 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
+            $table->foreign('kategori_id')->references('id')->on('kategories')->onDelete('cascade');
 
-            $table->foreign('kategori_id')->references('id')->on('categories')->onDelete('cascade');
+
         });
     }
 
@@ -29,6 +30,8 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
+
+        
     {
         Schema::dropIfExists('produks');
     }

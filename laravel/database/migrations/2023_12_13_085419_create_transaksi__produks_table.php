@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('transaksi__produks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('transaction_id');
+            $table->unsignedBigInteger('transaksi_id');
             $table->decimal('harga', 10, 2);
             $table->integer('jumlah');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('produks')->onDelete('cascade');
+            $table->foreign('transaksi_id')->references('id')->on('transaksis')->onDelete('cascade');
         });
     }
 
