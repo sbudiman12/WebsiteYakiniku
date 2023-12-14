@@ -52,7 +52,7 @@ class User extends Authenticatable
     }
 
     public function keranjang() {
-        return $this->belongsTo(Keranjang::class);
+        return $this->hasMany(Keranjang::class);
     }
 
     public function role() {

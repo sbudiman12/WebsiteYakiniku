@@ -27,12 +27,12 @@ class Produk extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
-    public function transaksiproduk(): BelongsTo
+    public function transaksiproduk()
     {
-        return $this->belongsTo(Transaksi_Produk::class);
+        return $this->hasMany(Transaksi_Produk::class);
     }
-    public function keranjang(): BelongsTo
+    public function keranjang()
     {
-        return $this->belongsTo(Keranjang::class);
+        return $this->hasMany(Keranjang::class);
     }
 }

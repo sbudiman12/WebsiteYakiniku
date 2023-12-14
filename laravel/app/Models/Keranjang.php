@@ -16,9 +16,13 @@ class Keranjang extends Model
         'total_harga',
         // tambahkan atribut lainnya sesuai kebutuhan
     ];
-    public function produks(): HasMany
+    public function produks()
     {
-        return $this->hasMany(Produk::class);
+        return $this->belongsTo(Produk::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
 }
