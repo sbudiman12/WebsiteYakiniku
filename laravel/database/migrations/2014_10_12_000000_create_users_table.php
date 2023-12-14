@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->enum('is_login', ['0','1'])->default('0');
             $table->enum('is_active', ['0','1'])->default('0');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
             
