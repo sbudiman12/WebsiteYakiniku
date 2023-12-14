@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Produk extends Model
+class Transaksi extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'nama',
-        'harga',
-        'stok',
-        'gambar',
-        'deskripsi',
-        'kategori_id',
+        'tanggal',
+        'bukti_transfer',
+        'user_id',
+        'status_id',
+        'delivery_id',
     ];
 }

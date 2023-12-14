@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
+            $table->string('nama');
+            $table->decimal('harga', 10, 2);
+            $table->integer('stok');
+            $table->string('gambar');
+            $table->text('deskripsi');
+            $table->unsignedBigInteger('kategori_id');
             $table->timestamps();
+
+            $table->foreign('kategori_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 
