@@ -15,4 +15,11 @@ class Transaksi_Produk extends Model
         'harga',
         'jumlah',
     ];
+
+    public function transaksi() {
+        return $this->belongsTo(Transaksi::class);
+    }
+    public function produk() {
+        return $this->belongsTo(Produk::class);
+    }
 }
