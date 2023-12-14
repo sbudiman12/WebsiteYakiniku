@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Kategori;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,15 @@ class ProdukFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'nama' => $this->faker->word,
+
+            
+        'harga' => $this->faker->randomFloat(2, 100, 9999.99),
+            'stok' => $this->faker->randomNumber(3),
+            'gambar' => 'default.png', // Ganti dengan URL atau path ke gambar default
+            'deskripsi' => $this->faker->paragraph,
+            'kategori_id' => fake()->randomNumber(1,5)
+            
         ];
     }
 }

@@ -8,9 +8,13 @@ use App\Models\Produk;
 
 class ProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function all()
+    {
+        $produks = Produk::all();
+
+        return view('admin/Adminproduk',compact('produks'));
+    }
+
     public function index()
     {
         //
