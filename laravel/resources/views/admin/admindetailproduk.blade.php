@@ -9,7 +9,7 @@
 <p>Stock: {{ $produk->stok }}</p>
 <p>Category ID: {{ $produk->kategori_id }} ({{$produk->kategori->kategori_name}})</p>
 <p>Description: {{ $produk->deskripsi }}</p>
-<img src="{{ asset($produk->gambar) }}" alt="Product Image" style="max-width: 300px; max-height: 300px;">
+<img src="{{ asset('storage/' . $produk->gambar) }}" alt="Product Image" style="max-width: 300px; max-height: 300px;">
 <!-- Adjust the style based on your design preferences -->
 
 @endsection

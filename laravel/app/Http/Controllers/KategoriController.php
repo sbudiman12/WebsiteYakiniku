@@ -9,8 +9,16 @@ use App\Models\Kategori;
 class KategoriController extends Controller
 {
     /**
-     * Display a listing of the resource.
+         * Display a listing of the resource.
      */
+
+    public function lihatSatu(Kategori $kategori) {
+
+        $kategori->load('produks');
+
+        return view('admin/adminkategoridetail', compact('kategori'));
+
+    }
     public function index()
     {
         //
