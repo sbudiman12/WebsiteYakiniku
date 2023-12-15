@@ -3,6 +3,7 @@
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use App\Models\Kategori;
+use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,16 +27,24 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/products', [ProdukController::class,'all'] )->middleware('admin')->name('produks.index');
+
 Route::get('/products/{produk}', [ProdukController::class,'lihatSatu'] )->middleware('admin');
 Route::get('/kategoris/{kategori}', [KategoriController::class,'lihatSatu'] )->middleware('admin');
 
 Route::get('/addproduct', [ProdukController::class, 'create'])->name('produks.create')->middleware('admin');
 Route::post('/products/add', [ProdukController::class, 'store'])->name('produks.store')->middleware('admin');
 
-Route::get('/produks/{id}/edit', [ProdukController::class, 'edit'])->name('produks.edit');
-Route::put('/produks/{id}', [ProdukController::class, 'update'])->name('produks.update');
+Route::get('/produks/{id}/edit', [ProdukController::class, 'edit'])->name('produks.edit')->middleware('admin');
+Route::put('/produks/{id}', [ProdukController::class, 'update'])->name('produks.update')->middleware('admin');
 
-Route::delete('/produks/{id}', [ProdukController::class, 'destroy'])->name('produks.destroy');
+Route::delete('/produks/{id}', [ProdukController::class, 'destroy'])->name('produks.destroy')->middleware('admin');
+
+Route::get('/kategoris', [KategoriController::class,'all'])->name('kategoris.index');
+
+Route::get('/kategorisadd', [KategoriController::class, 'create'])->name('kategoris.create')->middleware('admin');
+Route::post('/kategoris', [KategoriController::class, 'store'])->name('kategoris.store')->middleware('admin');
+Route::get('/kategoris/edit/{kategori}', [KategoriController::class], 'edit')->name('kategori.edit')->middleware('admin');
+Route::put('/kategoris/{kategori}', [KategoriController::class, 'update'])->name('kategori.update')->middleware('admin');
 
 
 

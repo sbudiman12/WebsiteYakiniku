@@ -5,12 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreKategoriRequest;
 use App\Http\Requests\UpdateKategoriRequest;
 use App\Models\Kategori;
+use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
     /**
          * Display a listing of the resource.
      */
+    public function all() {
+
+       $kategoris = Kategori::all();
+
+       return view('admin/kategori', compact('kategoris'));
+
+    }
 
     public function lihatSatu(Kategori $kategori) {
 
@@ -19,6 +27,8 @@ class KategoriController extends Controller
         return view('admin/adminkategoridetail', compact('kategori'));
 
     }
+
+    
     public function index()
     {
         //
@@ -29,15 +39,23 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/kategoriadd');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreKategoriRequest $request)
+    public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'kategori_name' => 'required|string|max:255',
+        ]);
+
+        Kategori::create([
+            'kategori_name' => $validatedData['kategori_name'],
+        ]);
+
+        return redirect()->route('kategoris.index')->with('success', 'Category added successfully!');
     }
 
     /**

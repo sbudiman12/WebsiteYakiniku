@@ -24,7 +24,7 @@
 <body  style="height: 50vh">
     <div class="navbar navbar-expand-sm bg-primary d-flex justify-content-between">
         <div class="px-4">
-            <img src="{{ url('/images/logo1.png') }}" class="p-1" style="height: 100px" />
+            <img src="{{ url('/storage/logo1.png') }}" class="p-1" style="height: 100px" />
         </div>
     <div>
         <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem; color: #800000;">Yakiniku At Home</h1>
