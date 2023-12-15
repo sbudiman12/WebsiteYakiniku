@@ -24,3 +24,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/products', [ProdukController::class,'all'] )->middleware('admin');
+Route::get('/products/{produk}', [ProdukController::class,'lihatSatu'] )->middleware('admin');
+
+

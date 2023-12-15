@@ -20,7 +20,18 @@ class UserSeeder extends Seeder
             'email' => \Faker\Factory::create()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('wasdwasd'),
-            'role_id' => '1', // Change to the desired role ID (in this case, 3)
+            'role_id' => '2',
+            'is_login' => '0',
+            'is_active' => '1',
+            'remember_token' => Str::random(10),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => \Faker\Factory::create()->name(),
+            'email' => 'sbudiman@student.ciputra.ac.id',
+            'email_verified_at' => now(),
+            'password' => bcrypt('sbudiman'),
+            'role_id' => '1', 
             'is_login' => '0',
             'is_active' => '1',
             'remember_token' => Str::random(10),

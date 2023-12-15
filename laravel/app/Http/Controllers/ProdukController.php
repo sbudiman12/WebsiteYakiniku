@@ -15,6 +15,13 @@ class ProdukController extends Controller
         return view('admin/Adminproduk',compact('produks'));
     }
 
+    public function lihatSatu(Produk $produk) {
+
+        $produk->load('kategori');
+
+        return view('admin/admindetailproduk', compact('produk'));
+    }
+
     public function index()
     {
         //

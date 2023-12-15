@@ -18,8 +18,10 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([RoleSeeder::class]);
         $this->call([UserSeeder::class]);
-        Kategori::factory()->count(5)->create();
-        Produk::factory()->count(50)->create();
+        //Kategori::factory()->count(5)->create();
+        //Produk::factory()->count(50)->create();
+        $this->call([KategoriSeeder::class]);
+        $this->call([ProdukSeeder::class]);
     }
 
     
