@@ -17,7 +17,7 @@
                 <td><a href="/kategoris/{{$produk['id']}}">{{ $produk->kategori_name }}</a></td>
               
                 <td>
-                    <a href="/produks/{{$produk['id']}}/edit" class="btn btn-warning">Update</a>
+                    <a href="/kategorisedit/{{$produk['id']}}" class="btn btn-warning">Update</a>
                     
                     <form action="{{ route('produks.destroy', $produk->id) }}" method="post">
                         @csrf
