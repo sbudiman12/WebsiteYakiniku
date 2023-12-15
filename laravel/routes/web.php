@@ -44,4 +44,6 @@ Route::get('/kategoris', [KategoriController::class, 'all'])->name('kategoris.in
 Route::get('/kategorisadd', [KategoriController::class, 'create'])->name('kategoris.create')->middleware('admin');
 Route::post('/kategoris', [KategoriController::class, 'store'])->name('kategoris.store')->middleware('admin');
 Route::get('/kategorisedit/{kategori}', [KategoriController::class, 'edit'])->name('kategori.edit')->middleware('admin');
-Route::put('/kategoris', [KategoriController::class, 'update'])->name('kategoris.update')->middleware('admin');
+Route::put('/kategoris/{kategori}', [KategoriController::class, 'update'])->name('kategoris.update')->middleware('admin');
+
+Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->name('kategoris.destroy')->middleware('admin');

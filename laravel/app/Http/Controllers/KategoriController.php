@@ -91,7 +91,10 @@ class KategoriController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Kategori $kategori)
-    {
-        //
-    }
+{
+
+    $kategori->delete();
+
+    return redirect()->route('kategoris.index')->with('success', 'Product deleted successfully!');
+}
 }
