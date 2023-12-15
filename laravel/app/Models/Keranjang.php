@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Keranjang extends Model
 {
@@ -14,4 +16,13 @@ class Keranjang extends Model
         'total_harga',
         // tambahkan atribut lainnya sesuai kebutuhan
     ];
+    public function produks()
+    {
+        return $this->belongsTo(Produk::class);
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
 }

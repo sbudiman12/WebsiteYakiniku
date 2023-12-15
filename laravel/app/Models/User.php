@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'alamat',
+        'role_id',
+        'is_login',
+        'is_active'
     ];
 
     /**
@@ -42,4 +46,36 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function favorites() {
+        return $this->hasMany(Favorites::class);
+    }
+
+    public function transaksis() {
+        return $this->hasMany(Transaksi::class);
+    }
+
+    public function keranjang() {
+        return $this->hasMany(Keranjang::class);
+    }
+
+    public function role() {
+        return $this->belongsTo(Role::class);
+    }
+
+
+    public function isAdmin(){
+        if ($this->role_id == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isMember(){
+        if ($this->role_id == 2) {
+            return true;
+        }
+        return false;
+    }
+
 }
