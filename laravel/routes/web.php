@@ -30,8 +30,12 @@ Route::get('/products/{produk}', [ProdukController::class,'lihatSatu'] )->middle
 Route::get('/kategoris/{kategori}', [KategoriController::class,'lihatSatu'] )->middleware('admin');
 
 Route::get('/addproduct', [ProdukController::class, 'create'])->name('produks.create')->middleware('admin');
-Route::post('/produks', [ProdukController::class, 'store'])->name('produks.store')->middleware('admin');
+Route::post('/products/add', [ProdukController::class, 'store'])->name('produks.store')->middleware('admin');
 
+Route::get('/produks/{id}/edit', [ProdukController::class, 'edit'])->name('produks.edit');
+Route::put('/produks/{id}', [ProdukController::class, 'update'])->name('produks.update');
+
+Route::delete('/produks/{id}', [ProdukController::class, 'destroy'])->name('produks.destroy');
 
 
 
