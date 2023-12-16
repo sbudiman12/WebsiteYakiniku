@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\TransaksiController;
 use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
@@ -47,3 +48,6 @@ Route::get('/kategorisedit/{kategori}', [KategoriController::class, 'edit'])->na
 Route::put('/kategoris/{kategori}', [KategoriController::class, 'update'])->name('kategoris.update')->middleware('admin');
 
 Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->name('kategoris.destroy')->middleware('admin');
+
+
+Route::get('/transaksis', [TransaksiController::class,'all'])->middleware('admin');

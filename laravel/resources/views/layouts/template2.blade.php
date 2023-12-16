@@ -22,7 +22,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/products">Products <span class="sr-only"></span></a>
-                <a class="nav-item nav-link" href="#">Transactions</a>
+                <a class="nav-item nav-link" href="/transaksis">Transactions</a>
                 <a class="nav-item nav-link" href="/kategoris">Kategori</a>
                 <!-- Add more navigation items as needed -->
               </div>

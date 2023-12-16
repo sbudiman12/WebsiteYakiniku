@@ -36,5 +36,7 @@ class UserSeeder extends Seeder
             'is_active' => '1',
             'remember_token' => Str::random(10),
         ]);
+
+        
     }
 }
