@@ -17,7 +17,7 @@
             <tbody>
                 @foreach($transaksis as $transaksi)
                     <tr>
-                        <td>{{ $transaksi->tanggal }}</td>
+                        <td><a href="/transaksis/{{$transaksi['id']}}">{{ $transaksi->tanggal }}</a></td>
                         <td>{{ $transaksi->user->name }}</td>
                         <td>{{ $transaksi->status->status_name }}</td>
                         <td>{{ $transaksi->delivery->delivery_name }}</td>
