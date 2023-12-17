@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <?php
     // Define hex codes here
@@ -70,18 +72,18 @@
     <div class=" cbbg navbar navbar-expand-sm d-flex justify-content-between ">
 
             <img src="{{ url('/assets/logo1.png') }}" class="p-1" style="height: 80px" />
-
+            <div>
+                <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem;" class="seasalt">Yakiniku At Home</h1>
+            </div>
+            <div>
+                <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem; color: #800000;">Icon here</h1>
         </div>
-    <div>
-        <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem;" class="seasalt">Yakiniku At Home</h1>
-    </div>
-    <div>
-        <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem; color: #800000;">Icon here</h1>
-</div>
+        </div>
+
     </div>
 
 
-    <div>
+    <div class="container">
         @yield('content')
     </div>
 
@@ -95,7 +97,7 @@
 
       <div class="container p-4">
         <!--Grid row-->
-        
+
         <div class="row mt-4">
             <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                 <img src="{{ url('/assets/logo1.png') }}" class="p-1" style="height: 200px" />
@@ -175,4 +177,3 @@
 
 
 </html>
-
