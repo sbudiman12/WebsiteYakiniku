@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,9 +51,33 @@ Route::put('/kategoris/{kategori}', [KategoriController::class, 'update'])->name
 Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->name('kategoris.destroy')->middleware('admin');
 
 
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+
+Route::get('/', [ProdukController::class, 'showProducts']);
+
 Route::get('/transaksis', [TransaksiController::class,'all'])->middleware('admin');
 
 Route::get('/transaksis/{transaksi}', [TransaksiController::class, 'view']);
 
 Route::patch('/transaksis/update-status/{transaksi}', [TransaksiController::class, 'updateStatus']);
+
+
+
+Route::get('/produk-ayam', [ProdukController::class, 'ayam']);
+
+
+
+Route::get('/produk-ikan', [ProdukController::class, 'ikan']);
+
+
+
+Route::get('/produk-sapi', [ProdukController::class, 'sapi']);
+
+
+Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
+
+
+Route::get('/home', [ProdukController::class, 'index']);
+
 
