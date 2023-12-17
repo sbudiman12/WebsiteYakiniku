@@ -38,7 +38,7 @@ class ProdukController extends Controller
         $categories = Kategori::all();
         return view('admin/adminaddproduk', compact('categories'));
     }
-    
+
 
 
     /**
@@ -86,7 +86,7 @@ class ProdukController extends Controller
         $categories = Kategori::all();
         return view('admin/admineditproduk', compact('produk', 'categories'));
     }
-    
+
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
@@ -97,9 +97,9 @@ class ProdukController extends Controller
             'deskripsi' => 'required|string',
             'kategori_id' => 'required|exists:kategoris,id',
         ]);
-    
+
         $produk = Produk::find($id);
-    
+
         // Delete old image if a new one is uploaded
         if ($request->hasFile('gambar')) {
             Storage::delete('public/' . $produk->gambar);
@@ -107,7 +107,7 @@ class ProdukController extends Controller
         } else {
             $gambarPath = $produk->gambar;
         }
-    
+
         $produk->update([
             'nama' => $validatedData['nama'],
             'harga' => $validatedData['harga'],
@@ -116,7 +116,7 @@ class ProdukController extends Controller
             'deskripsi' => $validatedData['deskripsi'],
             'kategori_id' => $validatedData['kategori_id'],
         ]);
-    
+
         return redirect()->route('produks.index', $id)->with('success', 'Product updated successfully!');
     }
 
@@ -135,4 +135,73 @@ class ProdukController extends Controller
 
     return redirect()->route('produks.index')->with('success', 'Product deleted successfully!');
 }
+
+public function showProducts()
+    {
+        $products = Produk::class;
+        return view('home')->with('products', $products)->with('currentPage', 'All');
+    }
+
+
+
+    public function sapi()
+    {
+        $sapi = Kategori::where('kategori_name', 'sapi')->first();
+
+        // Paginate the products within the "Sapi" category with 5 items per page
+        $products = $sapi->produks();
+
+        return view('omah')->with('produks', $products)->with('currentPage', 'Sapi');
+    }
+
+    public function ikan()
+    {
+        $ikan = Kategori::where('kategori_name', 'ikan')->first();
+
+        // Paginate the products within the "Sapi" category with 5 items per page
+        $products = $ikan->produks();
+
+        return view('omah')->with('produks', $products)->with('currentPage', 'ikan');
+    }
+
+    public function ayam()
+    {
+        $ayam = Kategori::where('kategori_name', 'ayam')->first();
+
+        // Paginate the products within the "Sapi" category with 5 items per page
+        $products = $ayam->produks();
+
+        return view('omah')->with('produks', $products)->with('currentPage', 'ayam');
+    }
+    public function snacks()
+    {
+        $snacks = Kategori::where('kategori_name', 'snacks')->first();
+
+        // Paginate the products within the "Sapi" category with 5 items per page
+        $products = $snacks->produks();
+
+        return view('omah')->with('produks', $products)->with('currentPage', 'snacks');
+    }
+
+public function showDetail($id)
+{
+    $product = Produk::findOrFail($id); // Adjust this based on your actual method to fetch a single product
+    return $product;
 }
+
+public function toggleFavorite(Product $product)
+{
+    // Logic to toggle the favorite status (add/remove from favorite list)
+    // You can use the authenticated user's favorite method or a dedicated favorites table
+    // For simplicity, I'll use the user's favorites method assuming you have a User model with a favorites relationship.
+
+    //auth()->user()->toggleFavorite($product);
+
+    // Redirect back or to a specific page
+    return redirect()->back()->with('success', 'Product added to favorites!');
+}
+
+
+
+}
+

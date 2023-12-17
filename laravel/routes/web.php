@@ -6,6 +6,7 @@ use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +27,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/products', [ProdukController::class,'all'] )->middleware('admin')->name('produks.index');
+Route::get('/products', [ProdukController::class, 'all'])->middleware('admin')->name('produks.index');
 
-Route::get('/products/{produk}', [ProdukController::class,'lihatSatu'] )->middleware('admin');
-Route::get('/kategoris/{kategori}', [KategoriController::class,'lihatSatu'] )->middleware('admin');
+Route::get('/products/{produk}', [ProdukController::class, 'lihatSatu'])->middleware('admin');
+Route::get('/kategoris/{kategori}', [KategoriController::class, 'lihatSatu'])->middleware('admin');
 
 Route::get('/addproduct', [ProdukController::class, 'create'])->name('produks.create')->middleware('admin');
 Route::post('/products/add', [ProdukController::class, 'store'])->name('produks.store')->middleware('admin');
@@ -39,12 +40,36 @@ Route::put('/produks/{id}', [ProdukController::class, 'update'])->name('produks.
 
 Route::delete('/produks/{id}', [ProdukController::class, 'destroy'])->name('produks.destroy')->middleware('admin');
 
-Route::get('/kategoris', [KategoriController::class,'all'])->name('kategoris.index');
+Route::get('/kategoris', [KategoriController::class, 'all'])->name('kategoris.index');
 
 Route::get('/kategorisadd', [KategoriController::class, 'create'])->name('kategoris.create')->middleware('admin');
 Route::post('/kategoris', [KategoriController::class, 'store'])->name('kategoris.store')->middleware('admin');
-Route::get('/kategoris/edit/{kategori}', [KategoriController::class], 'edit')->name('kategori.edit')->middleware('admin');
-Route::put('/kategoris/{kategori}', [KategoriController::class, 'update'])->name('kategori.update')->middleware('admin');
+Route::get('/kategorisedit/{kategori}', [KategoriController::class, 'edit'])->name('kategori.edit')->middleware('admin');
+Route::put('/kategoris/{kategori}', [KategoriController::class, 'update'])->name('kategoris.update')->middleware('admin');
+
+Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->name('kategoris.destroy')->middleware('admin');
+
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+
+Route::get('/', [ProdukController::class, 'showProducts']);
 
 
 
+
+Route::get('/produk-ayam', [ProdukController::class, 'ayam']);
+
+
+
+Route::get('/produk-ikan', [ProdukController::class, 'ikan']);
+
+
+
+Route::get('/produk-sapi', [ProdukController::class, 'sapi']);
+
+
+Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
+
+
+Route::get('/home', [ProdukController::class, 'index']);
