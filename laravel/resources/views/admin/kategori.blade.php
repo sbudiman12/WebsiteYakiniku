@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a href="/addproduct">Tambah Kategori</a>
+<a href="/kategorisadd">Tambah Kategori</a>
 
 <table class="table table-striped">
     <thead>
@@ -17,14 +17,14 @@
                 <td><a href="/kategoris/{{$produk['id']}}">{{ $produk->kategori_name }}</a></td>
               
                 <td>
-                    <a href="/produks/{{$produk['id']}}/edit" class="btn btn-warning">Update</a>
+                    <a href="/kategorisedit/{{$produk['id']}}" class="btn btn-warning">Update</a>
                     
-                    <form action="{{ route('produks.destroy', $produk->id) }}" method="post">
+                    <form action="{{ route('kategoris.destroy', $produk) }}" method="post">
                         @csrf
                         @method('DELETE')
                     
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this product?')">
-                            Delete Product
+                            Delete
                         </button>
                     </form>
                     
