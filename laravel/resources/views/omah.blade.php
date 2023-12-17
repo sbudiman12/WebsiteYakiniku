@@ -49,13 +49,13 @@
                 <div id="carouselExampleFade" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img  class="fit d-block " src="{{ url('/assets/carousel1.png') }}" alt="First slide" >
+                        <img  class="fit d-block " src="{{ url('storage/carousel1.png') }}" alt="First slide" >
                       </div>
                       <div class="carousel-item">
-                        <img class="fit d-block " src="{{ url('/assets/carousel2.png') }}" alt="Second slide">
+                        <img class="fit d-block " src="{{ url('storage/carousel2.png') }}" alt="Second slide">
                       </div>
                       <div class="carousel-item">
-                        <img class="fit d-block" src="{{ url('/assets/carousel3.png') }}" alt="Third slide">
+                        <img class="fit d-block" src="{{ url('storage/carousel3.png') }}" alt="Third slide">
                       </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -77,7 +77,7 @@
     <div class="d-flex justify-content-center pt-5">
        <div class="px-3">
         <div class="" style="width: 5rem;">
-            <img src="{{ url('/assets/all.png') }}" class="card-img-top" alt="...">
+            <img src="{{ url('storage/all.png') }}" class="card-img-top" alt="...">
 
         </div>
        <div class="text-center text-wrap">
@@ -86,7 +86,7 @@
        </div>
        <div class="px-3">
         <div class="" style="width: 5rem;">
-            <img src="{{ url('/assets/sapi.png') }}" class="card-img-top" alt="...">
+            <img src="{{ url('storage/sapi.png') }}" class="card-img-top" alt="...">
 
         </div>
        <div class="text-center text-wrap">
@@ -95,7 +95,7 @@
        </div>
        <div class="px-3">
         <div class="" style="width: 5rem;">
-            <img src="{{ url('/assets/ayam.png') }}" class="card-img-top" alt="...">
+            <img src="{{ url('storage/ayam.png') }}" class="card-img-top" alt="...">
 
         </div>
        <div class="text-center text-wrap">
@@ -104,7 +104,7 @@
        </div>
        <div class="px-3">
         <div class="" style="width: 5rem;">
-            <img src="{{ url('/assets/ikan.png') }}" class="card-img-top" alt="...">
+            <img src="{{ url('storage/ikan.png') }}" class="card-img-top" alt="...">
 
         </div>
        <div class="text-center text-wrap">
@@ -113,7 +113,7 @@
        </div>
        <div class="px-3">
         <div class="" style="width: 5rem;">
-            <img src="{{ url('/assets/snacks.png') }}" class="card-img-top" alt="...">
+            <img src="{{ url('storage/snacks.png') }}" class="card-img-top" alt="...">
 
         </div>
        <div class="text-center text-wrap">
@@ -127,12 +127,12 @@
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
-        @foreach ($products as $product)
+        @foreach ($products as $produk)
             <div class="col mb-4">
                 <div class="card h-100 shadow-sm">
                     <a href="/product/{{ $produk->id }}">
                         <!-- Make the image clickable with a link to the detail view -->
-                        <img src="{{ asset('assets/' . $produk->gambar) }}" alt="{{ $produk->nama }}"
+                        <img src="{{ asset('storage/' . $produk->gambar) }}" alt="{{ $produk->nama }}"
                             class="card-img-top" style="object-fit: cover; height: 225px;">
                     </a>
                     <div class="card-body">

@@ -138,8 +138,8 @@ class ProdukController extends Controller
 
 public function showProducts()
     {
-        $products = Produk::class;
-        return view('home')->with('products', $products)->with('currentPage', 'All');
+        $products = Produk::all();
+        return view('omah',compact('products'));
     }
 
 
@@ -189,7 +189,9 @@ public function showDetail($id)
     return $product;
 }
 
-public function toggleFavorite(Product $product)
+
+
+public function toggleFavorite(Produk $product)
 {
     // Logic to toggle the favorite status (add/remove from favorite list)
     // You can use the authenticated user's favorite method or a dedicated favorites table

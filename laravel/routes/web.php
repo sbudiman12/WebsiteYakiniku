@@ -20,13 +20,10 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('omah');
-});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/products', [ProdukController::class, 'all'])->middleware('admin')->name('produks.index');
 
@@ -54,7 +51,7 @@ Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 
-Route::get('/', [ProdukController::class, 'showProducts']);
+// Route::get('/', [ProdukController::class, 'showProducts']);
 
 Route::get('/transaksis', [TransaksiController::class,'all'])->middleware('admin');
 
@@ -78,6 +75,6 @@ Route::get('/produk-sapi', [ProdukController::class, 'sapi']);
 Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
 
 
-Route::get('/home', [ProdukController::class, 'index']);
+Route::get('/home', [ProdukController::class, 'showProducts']);
 
 
