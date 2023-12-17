@@ -28,7 +28,12 @@ class DatabaseSeeder extends Seeder
         //Produk::factory()->count(50)->create();
         $this->call([KategoriSeeder::class]);
         $this->call([ProdukSeeder::class]);
+
+        
         Transaksi::factory()->count(15)->create();
+
+        $this->call([TransaksiProdukSeeder::class]);
+
     }
 
     

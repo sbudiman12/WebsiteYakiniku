@@ -53,3 +53,6 @@ Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->
 Route::get('/transaksis', [TransaksiController::class,'all'])->middleware('admin');
 
 Route::get('/transaksis/{transaksi}', [TransaksiController::class, 'view']);
+
+Route::patch('/transaksis/update-status/{transaksi}', [TransaksiController::class, 'updateStatus']);
+

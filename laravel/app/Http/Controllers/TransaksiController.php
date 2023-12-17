@@ -17,19 +17,41 @@ class TransaksiController extends Controller
         //
     }
 
-    public function all() {
+    public function all()
+    {
 
         $transaksis = Transaksi::all();
 
-        $transaksis->load('transaksi_produk');
+
 
         return view('admin/adminviewtransaksi', compact('transaksis'));
     }
 
-    public function view(Transaksi $transaksi) {
+    public function view(Transaksi $transaksi)
+    {
 
-        return view('admin/viewtransaksi', compact('transaksi'));
+        // Eager load the necessary relationships
+        $transaksi->load('transaksi_produk');
+
+        // Access the transaksi_produk relationship and then the produk relationship
+        $pa = $transaksi->transaksi_produk;
+
+        $pa->load('produk');
+
+
+        return view('admin/viewtransaksi', compact('transaksi', 'pa'));
     }
+
+    // TransaksiController.php
+
+    public function updateStatus(Transaksi $transaksi)
+    {
+        $transaksi->status_id = $transaksi->status_id === 1 ? 2 : 1; // Toggle status between 1 and 2
+        $transaksi->save();
+
+        return response()->json(['status' => $transaksi->status->status_name]);
+    }
+
 
     /**
      * Show the form for creating a new resource.
