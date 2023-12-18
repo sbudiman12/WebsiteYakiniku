@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => \Faker\Factory::create()->name(),
             'email' => \Faker\Factory::create()->unique()->safeEmail(),
+            'phone_number' => \Faker\Factory::create()->unique()->phoneNumber(),
             'email_verified_at' => now(),
             'password' => bcrypt('wasdwasd'),
             'role_id' => '2',
@@ -29,14 +30,15 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => \Faker\Factory::create()->name(),
             'email' => 'sbudiman@student.ciputra.ac.id',
+            'phone_number' => \Faker\Factory::create()->unique()->phoneNumber(),
             'email_verified_at' => now(),
             'password' => bcrypt('sbudiman'),
-            'role_id' => '1', 
+            'role_id' => '1',
             'is_login' => '0',
             'is_active' => '1',
             'remember_token' => Str::random(10),
         ]);
 
-        
+
     }
 }

@@ -24,7 +24,8 @@ class User extends Authenticatable
         'alamat',
         'role_id',
         'is_login',
-        'is_active'
+        'is_active',
+        'phone_number'
     ];
 
     /**

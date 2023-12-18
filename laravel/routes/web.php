@@ -94,5 +94,11 @@ Route::get('/product/{produk}', [ProdukController::class,'related']);
 Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment']);
 
 Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart');
+Route::get('/ndelok', [ProfileController::class, 'show'])->name('ndelok.show');
 
+// Route to display the edit form for the user's profile
+Route::get('/ndelok/edit', [ProfileController::class, 'edit'])->name('ndelok.edit');
+
+// Route to handle the form submission and update the user's profile
+Route::put('/ndelok/update', [ProfileController::class, 'update'])->name('ndelok.update');
 
