@@ -15,7 +15,7 @@ class ProdukController extends Controller
     {
         $produks = Produk::all();
 
-        return view('admin/Adminproduk',compact('produk'));
+        return view('admin/Adminproduk',compact('produks'));
     }
 
     public function lihatSatu(Produk $produk) {

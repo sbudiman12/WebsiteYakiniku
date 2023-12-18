@@ -66,6 +66,8 @@ Route::get('/keranjang' ,[KeranjangController::class, 'all']);
 
 Route::patch('/keranjang/update-quantity/{id}', [KeranjangController::class, 'updateQuantity'])->middleware('web');
 
+Route::delete('/keranjang/remove/{id}', [KeranjangController::class, 'removeFromCart']);
+
 
 Route::view('/admin', 'admin/blank')->middleware('admin');
 
@@ -90,4 +92,7 @@ Route::get('/home', [ProdukController::class, 'index']);
 Route::get('/product/{produk}', [ProdukController::class,'related']);
 
 Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment']);
+
+Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart');
+
 

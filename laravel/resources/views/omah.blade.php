@@ -49,13 +49,13 @@
                 <div id="carouselExampleFade" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img  class="fit d-block " src="{{ url('storage/carousel1.png') }}" alt="First slide" >
+                        <img  class="fit d-block " src="{{ url('assets/carousel1.png') }}" alt="First slide" >
                       </div>
                       <div class="carousel-item">
-                        <img class="fit d-block " src="{{ url('storage/carousel2.png') }}" alt="Second slide">
+                        <img class="fit d-block " src="{{ url('assets/carousel2.png') }}" alt="Second slide">
                       </div>
                       <div class="carousel-item">
-                        <img class="fit d-block" src="{{ url('storage/carousel3.png') }}" alt="Third slide">
+                        <img class="fit d-block" src="{{ url('assets/carousel3.png') }}" alt="Third slide">
                       </div>
                     </div>
                     <button class="carousel-control-prev hover-expand" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -92,6 +92,7 @@
                 <img src="{{ url('/assets/sapi.png') }}" class="card-img-top" alt="...">
             </a>
 
+
         </div>
        <div class="text-center text-wrap">
         <h5 class="pt-2">Sapi</h5>
@@ -102,6 +103,7 @@
             <a href="/produk-ayam">
             <img src="{{ url('/assets/ayam.png') }}" class="card-img-top" alt="...">
             </a>
+  
         </div>
        <div class="text-center text-wrap">
         <h5 class="pt-2">Ayam</h5>
@@ -109,9 +111,11 @@
        </div>
        <div class="px-3 hover-expand">
         <div class="" style="width: 5rem;">
+
             <a href="/produk-ikan">
             <img src="{{ url('/assets/ikan.png') }}" class="card-img-top" alt="...">
             </a>
+
         </div>
        <div class="text-center text-wrap">
         <h5 class="pt-2">Ikan</h5>
@@ -122,6 +126,7 @@
             <a href="/produk-snacks">
             <img src="{{ url('/assets/snacks.png') }}" class="card-img-top" alt="...">
             </a>
+
         </div>
        <div class="text-center text-wrap">
         <h5 class="pt-2">Snacks</h5>

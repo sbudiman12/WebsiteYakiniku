@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreKeranjangRequest;
 use App\Http\Requests\UpdateKeranjangRequest;
 use App\Models\Keranjang;
+use App\Models\Produk;
 use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -79,17 +80,42 @@ class KeranjangController extends Controller
     {
         //
     }
+    public function addToCart(Request $request, $productId)
+    {
+        // Ambil produk berdasarkan ID
+        $product = Produk::findOrFail($productId);
+
+        // Cek apakah produk sudah ada di keranjang pengguna saat ini
+        $existingCartItem = Keranjang::where('user_id', auth()->user()->id)
+            ->where('produk_id', $product->id)
+            ->first();
+
+        // Jika produk sudah ada di keranjang, tingkatkan jumlahnya
+        if ($existingCartItem) {
+            $existingCartItem->jumlah += 1;
+            $existingCartItem->save();
+        } else {
+            // Jika produk belum ada di keranjang, tambahkan sebagai item baru
+            Keranjang::create([
+                'user_id' => auth()->user()->id,
+                'produk_id' => $product->id,
+                'jumlah' => 1,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Product added to cart successfully');
+    }
 
     public function processPayment(Request $request)
     {
         // Validate the form data
         $request->validate([
-            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'delivery' => 'required|in:1,2', 
         ]);
-
+    
         $buktiTransferPath = $request->file('bukti_transfer')->store('bukti_transfer', 'public');
-
+    
         $transaksi = Transaksi::create([
             'tanggal' => Carbon::now(),
             'bukti_transfer' => $buktiTransferPath,
@@ -97,8 +123,16 @@ class KeranjangController extends Controller
             'status_id' => 2, 
             'delivery_id' => $request->input('delivery'),
         ]);
-
+    
         $keranjangs = auth()->user()->keranjang;
+        
+        foreach ($keranjangs as $keranjang) {
+            // Mengurangi stok produk sesuai dengan jumlah di keranjang
+            $produk = $keranjang->produk;
+            $produk->stok -= $keranjang->jumlah;
+            $produk->save();
+        }
+    
         $transaksi->transaksi_produk()->createMany($keranjangs->map(function ($keranjang) {
             return [
                 'product_id' => $keranjang->produk_id,
@@ -106,13 +140,22 @@ class KeranjangController extends Controller
                 'jumlah' => $keranjang->jumlah,
             ];
         })->toArray());
-
+    
+        // Menghapus item di keranjang setelah transaksi selesai
         auth()->user()->keranjang()->delete();
-
-
+    
         return redirect('/')->with('success', 'Payment successful! Thank you for your purchase.');
     }
+    
+    public function removeFromCart($id)
+    {
+        $keranjang = Keranjang::findOrFail($id);
 
+        // Hapus item dari keranjang
+        $keranjang->delete();
+
+        return response()->json(['message' => 'Item removed from cart successfully']);
+    }
   
 
     /**
