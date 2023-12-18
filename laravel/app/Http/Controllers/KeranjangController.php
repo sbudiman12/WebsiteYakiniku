@@ -103,7 +103,10 @@ class KeranjangController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Product added to cart successfully');
+        // Tampilkan pemberitahuan bahwa item telah ditambahkan ke keranjang
+        session()->flash('success', 'Item added to cart successfully');
+
+        return redirect()->back();
     }
 
     public function processPayment(Request $request)
