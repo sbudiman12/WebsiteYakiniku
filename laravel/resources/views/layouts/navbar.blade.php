@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <?php
     // Define hex codes here
@@ -81,7 +83,7 @@
     </div>
 
 
-    <div>
+    <div class="container">
         @yield('content')
     </div>
 
@@ -175,4 +177,3 @@
 
 
 </html>
-

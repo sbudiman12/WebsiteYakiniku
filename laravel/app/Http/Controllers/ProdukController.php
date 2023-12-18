@@ -145,6 +145,7 @@ public function showProducts()
 
 
 
+
     public function sapi()
     {
         $sapi = Kategori::where('kategori_name', 'sapi')->first();
@@ -167,12 +168,13 @@ public function showProducts()
 
     public function ayam()
     {
-        $ayam = Kategori::where('kategori_name', 'ayam')->first();
+        $ayam = Kategori::where('id', '1')->first();
 
         // Paginate the products within the "Sapi" category with 5 items per page
-        $products = $ayam->produks();
+        $ayam->load('produks');
 
-        return view('omah')->with('products', $products)->with('currentPage', 'ayam');
+        $products = $ayam->produks;
+        return view('omah',compact('products'));
     }
     public function snacks()
     {
@@ -189,6 +191,7 @@ public function showDetail($id)
     $product = Produk::findOrFail($id); // Adjust this based on your actual method to fetch a single product
     return $product;
 }
+
 
 public function toggleFavorite(Produk $product)
 {
