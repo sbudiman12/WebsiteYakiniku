@@ -62,7 +62,7 @@ Route::get('/transaksis/{transaksi}', [TransaksiController::class, 'view'])->mid
 Route::patch('/transaksis/update-status/{transaksi}', [TransaksiController::class, 'updateStatus'])->middleware('admin');
 
 
-Route::get('/keranjang' ,[KeranjangController::class, 'all']);
+Route::get('/keranjang' ,[KeranjangController::class, 'all'])->middleware('auth');
 
 Route::patch('/keranjang/update-quantity/{id}', [KeranjangController::class, 'updateQuantity'])->middleware('web');
 
@@ -96,7 +96,7 @@ Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment'
 Route::post('/pembayaran', [KeranjangController::class, 'showPayment']);
 
 
-Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart');
+Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart')->middleware('auth');
 Route::get('/profil', [ProfileController::class, 'show'])->name('ndelok.show');
 
 // Route to display the user's profile
