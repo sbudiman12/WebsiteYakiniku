@@ -91,3 +91,6 @@ Route::post('/pembayaran', [KeranjangController::class, 'showPayment']);
 
 Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment']);
 
+Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart');
+
+

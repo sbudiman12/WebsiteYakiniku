@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreKeranjangRequest;
 use App\Http\Requests\UpdateKeranjangRequest;
 use App\Models\Keranjang;
+use App\Models\Produk;
 use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -78,6 +79,31 @@ class KeranjangController extends Controller
         public function index()
     {
         //
+    }
+    public function addToCart(Request $request, $productId)
+    {
+        // Ambil produk berdasarkan ID
+        $product = Produk::findOrFail($productId);
+
+        // Cek apakah produk sudah ada di keranjang pengguna saat ini
+        $existingCartItem = Keranjang::where('user_id', auth()->user()->id)
+            ->where('produk_id', $product->id)
+            ->first();
+
+        // Jika produk sudah ada di keranjang, tingkatkan jumlahnya
+        if ($existingCartItem) {
+            $existingCartItem->jumlah += 1;
+            $existingCartItem->save();
+        } else {
+            // Jika produk belum ada di keranjang, tambahkan sebagai item baru
+            Keranjang::create([
+                'user_id' => auth()->user()->id,
+                'produk_id' => $product->id,
+                'jumlah' => 1,
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Product added to cart successfully');
     }
 
     public function processPayment(Request $request)
