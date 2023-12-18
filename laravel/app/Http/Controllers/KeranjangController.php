@@ -87,9 +87,9 @@ class KeranjangController extends Controller
             'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'delivery' => 'required|in:1,2', 
         ]);
-
+    
         $buktiTransferPath = $request->file('bukti_transfer')->store('bukti_transfer', 'public');
-
+    
         $transaksi = Transaksi::create([
             'tanggal' => Carbon::now(),
             'bukti_transfer' => $buktiTransferPath,
@@ -97,8 +97,16 @@ class KeranjangController extends Controller
             'status_id' => 2, 
             'delivery_id' => $request->input('delivery'),
         ]);
-
+    
         $keranjangs = auth()->user()->keranjang;
+        
+        foreach ($keranjangs as $keranjang) {
+            // Mengurangi stok produk sesuai dengan jumlah di keranjang
+            $produk = $keranjang->produk;
+            $produk->stok -= $keranjang->jumlah;
+            $produk->save();
+        }
+    
         $transaksi->transaksi_produk()->createMany($keranjangs->map(function ($keranjang) {
             return [
                 'product_id' => $keranjang->produk_id,
@@ -106,13 +114,13 @@ class KeranjangController extends Controller
                 'jumlah' => $keranjang->jumlah,
             ];
         })->toArray());
-
+    
+        // Menghapus item di keranjang setelah transaksi selesai
         auth()->user()->keranjang()->delete();
-
-
+    
         return redirect('/')->with('success', 'Payment successful! Thank you for your purchase.');
     }
-
+    
   
 
     /**
