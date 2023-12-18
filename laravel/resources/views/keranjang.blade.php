@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{ $keranjang->produk->nama }}</td>
                         <td>
-                            <img src="{{ asset('storage/' . $keranjang->produk->gambar) }}" alt="Product Image"
+                            <img src="{{ url('assets/' . $keranjang->produk->gambar) }}" alt="Product Image"
                                 style="max-width: 100px;">
                         </td>
                         <td>

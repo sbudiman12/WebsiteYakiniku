@@ -84,7 +84,7 @@ class KeranjangController extends Controller
     {
         // Validate the form data
         $request->validate([
-            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg|max:2048',
             'delivery' => 'required|in:1,2', 
         ]);
 
