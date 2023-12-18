@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransaksiController;
 use App\Models\Kategori;
@@ -8,6 +9,7 @@ use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Models\Keranjang;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +22,6 @@ use App\Http\Controllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('omah');
-});
 
 Auth::routes();
 
@@ -56,11 +55,19 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 Route::get('/', [ProdukController::class, 'showProducts']);
 
-Route::get('/transaksis', [TransaksiController::class,'all'])->middleware('admin');
+Route::get('/transaksis', [TransaksiController::class, 'all'])->middleware('admin');
 
-Route::get('/transaksis/{transaksi}', [TransaksiController::class, 'view']);
+Route::get('/transaksis/{transaksi}', [TransaksiController::class, 'view'])->middleware('admin');
 
-Route::patch('/transaksis/update-status/{transaksi}', [TransaksiController::class, 'updateStatus']);
+Route::patch('/transaksis/update-status/{transaksi}', [TransaksiController::class, 'updateStatus'])->middleware('admin');
+
+
+Route::get('/keranjang' ,[KeranjangController::class, 'all']);
+
+Route::patch('/keranjang/update-quantity/{id}', [KeranjangController::class, 'updateQuantity'])->middleware('web');
+
+
+Route::view('/admin', 'admin/blank')->middleware('admin');
 
 
 
@@ -82,4 +89,5 @@ Route::get('/home', [ProdukController::class, 'index']);
 
 Route::get('/product/{produk}', [ProdukController::class,'related']);
 
+Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment']);
 

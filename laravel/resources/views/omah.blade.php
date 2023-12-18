@@ -49,13 +49,13 @@
                 <div id="carouselExampleFade" class="carousel slide carousel-fade">
                     <div class="carousel-inner">
                       <div class="carousel-item active">
-                        <img  class="fit d-block " src="{{ url('/assets/carousel1.png') }}" alt="First slide" >
+                        <img  class="fit d-block " src="{{ url('storage/carousel1.png') }}" alt="First slide" >
                       </div>
                       <div class="carousel-item">
-                        <img class="fit d-block " src="{{ url('/assets/carousel2.png') }}" alt="Second slide">
+                        <img class="fit d-block " src="{{ url('storage/carousel2.png') }}" alt="Second slide">
                       </div>
                       <div class="carousel-item">
-                        <img class="fit d-block" src="{{ url('/assets/carousel3.png') }}" alt="Third slide">
+                        <img class="fit d-block" src="{{ url('storage/carousel3.png') }}" alt="Third slide">
                       </div>
                     </div>
                     <button class="carousel-control-prev hover-expand" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">

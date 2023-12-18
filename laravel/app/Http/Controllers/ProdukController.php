@@ -145,6 +145,7 @@ public function showProducts()
 
 
 
+
     public function sapi()
     {
         $sapi = Kategori::where('id', '2')->first();
@@ -195,6 +196,7 @@ public function showDetail($id)
     $product = Produk::findOrFail($id); // Adjust this based on your actual method to fetch a single product
     return $product;
 }
+
 
 public function toggleFavorite(Produk $product)
 {
