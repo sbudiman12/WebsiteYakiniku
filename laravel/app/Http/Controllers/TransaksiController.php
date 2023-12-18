@@ -53,6 +53,20 @@ class TransaksiController extends Controller
     }
 
 
+    public function all() {
+
+        $transaksis = Transaksi::all();
+
+        $transaksis->load('transaksi_produk');
+
+        return view('admin/adminviewtransaksi', compact('transaksis'));
+    }
+
+    public function view(Transaksi $transaksi) {
+
+        return view('admin/viewtransaksi', compact('transaksi'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

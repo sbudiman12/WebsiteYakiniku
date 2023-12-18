@@ -15,7 +15,7 @@ class ProdukController extends Controller
     {
         $produks = Produk::all();
 
-        return view('admin/Adminproduk',compact('produks'));
+        return view('admin/Adminproduk',compact('produk'));
     }
 
     public function lihatSatu(Produk $produk) {
@@ -137,10 +137,12 @@ class ProdukController extends Controller
 }
 
 public function showProducts()
-    {
-        $products = Produk::all();
-        return view('omah',compact('products'));
-    }
+{
+    $products = Produk::all();
+    return view('omah')->with('products', $products)->with('currentPage', 'All');
+}
+
+
 
 
 
@@ -189,7 +191,6 @@ public function showDetail($id)
     $product = Produk::findOrFail($id); // Adjust this based on your actual method to fetch a single product
     return $product;
 }
-
 
 
 public function toggleFavorite(Produk $product)
