@@ -36,10 +36,16 @@
                         <p class="lead">{{ $product->deskripsi }}</p>
                         <div class="d-flex">
 
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
+                            
+
+                            <form action="{{ route('keranjang.addToCart', ['productId' => $product->id]) }}" method="post">
+                                @csrf
+                                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Add to cart
+                                </button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
@@ -79,8 +85,31 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
+        
         <script src="js/scripts.js"></script>
+
+        
     </body>
 </html>
 
 @endsection
+
+
+<script>
+
+function addToCart(productId) {
+    $.ajax({
+        url: '/keranjang/add-to-cart/' + productId,
+        method: 'POST',
+        data: {_token: '{{ csrf_token() }}'},
+        success: function(response) {
+            alert(response.success);
+            // Handle success (e.g., update UI)
+        },
+        error: function(error) {
+            console.error('Error adding to cart', error);
+        }
+    });
+}
+
+</script>

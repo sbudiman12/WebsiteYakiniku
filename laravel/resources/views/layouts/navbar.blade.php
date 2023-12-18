@@ -87,7 +87,7 @@
             </div>
             <div style="width:400px;">
                 <div class="d-flex justify-content-center">
-                    <a href="" class="px-2">
+                    <a href="/keranjang" class="px-2">
                         <img src="{{ url('/assets/keranjang.png') }}" alt="" style="width: 40px;" >
                     </a>
                     <a href="" class="px-2">
