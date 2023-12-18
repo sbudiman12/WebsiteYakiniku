@@ -53,8 +53,6 @@ class TransaksiController extends Controller
     }
 
 
-<<<<<<< Updated upstream
-=======
     public function all() {
 
         $transaksis = Transaksi::all();
@@ -69,7 +67,6 @@ class TransaksiController extends Controller
         return view('admin/viewtransaksi', compact('transaksi'));
     }
 
->>>>>>> Stashed changes
     /**
      * Show the form for creating a new resource.
      */
