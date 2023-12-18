@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTransaksiRequest;
 use App\Http\Requests\UpdateTransaksiRequest;
 use App\Models\Transaksi;
+use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
@@ -16,6 +17,23 @@ class TransaksiController extends Controller
         //
     }
 
+<<<<<<< Updated upstream
+=======
+    public function all() {
+
+        $transaksis = Transaksi::all();
+
+        $transaksis->load('transaksi_produk');
+
+        return view('admin/adminviewtransaksi', compact('transaksis'));
+    }
+
+    public function view(Transaksi $transaksi) {
+
+        return view('admin/viewtransaksi', compact('transaksi'));
+    }
+
+>>>>>>> Stashed changes
     /**
      * Show the form for creating a new resource.
      */

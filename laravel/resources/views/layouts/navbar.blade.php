@@ -70,14 +70,14 @@
     <div class=" cbbg navbar navbar-expand-sm d-flex justify-content-between ">
 
             <img src="{{ url('/assets/logo1.png') }}" class="p-1" style="height: 80px" />
-
+            <div>
+                <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem;" class="seasalt">Yakiniku At Home</h1>
+            </div>
+            <div>
+                <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem; color: #800000;">Icon here</h1>
         </div>
-    <div>
-        <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem;" class="seasalt">Yakiniku At Home</h1>
-    </div>
-    <div>
-        <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem; color: #800000;">Icon here</h1>
-</div>
+        </div>
+
     </div>
 
 
@@ -95,7 +95,7 @@
 
       <div class="container p-4">
         <!--Grid row-->
-        
+
         <div class="row mt-4">
             <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
                 <img src="{{ url('/assets/logo1.png') }}" class="p-1" style="height: 200px" />

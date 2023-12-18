@@ -128,6 +128,7 @@
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mt-4">
         @foreach ($products as $product)
+<<<<<<< Updated upstream
             <div class="col mb-4">
                 <div class="card h-100 shadow-sm">
                     <a href="/product/{{ $produk->id }}">
@@ -142,6 +143,23 @@
                 </div>
             </div>
         @endforeach
+=======
+
+        <div class="col mb-4">
+            <div class="card h-100 shadow-sm">
+                <a href="/product/{{ $product->id }}">
+                    <!-- Make the image clickable with a link to the detail view -->
+                    <img src="{{ asset('assets/' . $product->gambar) }}" alt="{{ $product->nama }}"
+                        class="card-img-top" style="object-fit: cover; height: 225px;">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $product->nama }}</h5>
+                    <p class="card-text">Price: Rp.{{ $product->harga }}</p>
+                </div>
+            </div>
+        </div>
+    @endforeach
+>>>>>>> Stashed changes
     </div>
 
 

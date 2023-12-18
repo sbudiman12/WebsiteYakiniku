@@ -15,7 +15,7 @@ class ProdukController extends Controller
     {
         $produks = Produk::all();
 
-        return view('admin/Adminproduk',compact('produks'));
+        return view('admin/Adminproduk',compact('produk'));
     }
 
     public function lihatSatu(Produk $produk) {
@@ -137,6 +137,7 @@ class ProdukController extends Controller
 }
 
 public function showProducts()
+<<<<<<< Updated upstream
     {
         $products = Produk::class;
         return view('home')->with('products', $products)->with('currentPage', 'All');
@@ -190,6 +191,62 @@ public function showDetail($id)
 }
 
 public function toggleFavorite(Product $product)
+=======
+{
+    $products = Produk::all();
+    return view('omah')->with('products', $products)->with('currentPage', 'All');
+}
+
+
+
+
+    public function sapi()
+    {
+        $sapi = Kategori::where('kategori_name', 'sapi')->first();
+
+        // Paginate the products within the "Sapi" category with 5 items per page
+        $products = $sapi->produks();
+
+        return view('omah')->with('products', $products)->with('currentPage', 'Sapi');
+    }
+
+    public function ikan()
+    {
+        $ikan = Kategori::where('kategori_name', 'ikan')->first();
+
+        // Paginate the products within the "Sapi" category with 5 items per page
+        $products = $ikan->produks();
+
+        return view('omah')->with('products', $products)->with('currentPage', 'ikan');
+    }
+
+    public function ayam()
+    {
+        $ayam = Kategori::where('kategori_name', 'ayam')->first();
+
+        // Paginate the products within the "Sapi" category with 5 items per page
+        $products = $ayam->produks();
+
+        return view('omah')->with('products', $products)->with('currentPage', 'ayam');
+    }
+    public function snacks()
+    {
+        $snacks = Kategori::where('kategori_name', 'snacks')->first();
+
+        // Paginate the products within the "Sapi" category with 5 items per page
+        $products = $snacks->produks();
+
+        return view('omah')->with('products', $products)->with('currentPage', 'snacks');
+    }
+
+public function showDetail($id)
+{
+    $product = Produk::findOrFail($id); // Adjust this based on your actual method to fetch a single product
+    return $product;
+}
+
+public function toggleFavorite(Produk $product)
+>>>>>>> Stashed changes
 {
     // Logic to toggle the favorite status (add/remove from favorite list)
     // You can use the authenticated user's favorite method or a dedicated favorites table
