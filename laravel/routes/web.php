@@ -67,7 +67,7 @@ Route::get('/keranjang' ,[KeranjangController::class, 'all']);
 Route::patch('/keranjang/update-quantity/{id}', [KeranjangController::class, 'updateQuantity'])->middleware('web');
 
 
-Route::view('/admin', 'admin/blank');
+Route::view('/admin', 'admin/blank')->middleware('admin');
 
 
 

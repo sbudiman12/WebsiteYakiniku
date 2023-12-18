@@ -6,6 +6,8 @@
     <div class="container mt-4">
         <h1>Your Shopping Cart</h1>
 
+        @if(count($keranjangs) > 0)
+
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -64,6 +66,9 @@
             @csrf
             <button type="button" class="btn btn-primary" onclick="confirmPayment()">Submit Payment</button>
         </form>
+    @else
+        <p>Your shopping cart is empty.</p>
+    @endif
 
     </div>
 

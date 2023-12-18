@@ -151,7 +151,7 @@ public function showProducts()
         // Paginate the products within the "Sapi" category with 5 items per page
         $products = $sapi->produks();
 
-        return view('omah')->with('produks', $products)->with('currentPage', 'Sapi');
+        return view('omah')->with('products', $products)->with('currentPage', 'Sapi');
     }
 
     public function ikan()
@@ -161,17 +161,18 @@ public function showProducts()
         // Paginate the products within the "Sapi" category with 5 items per page
         $products = $ikan->produks();
 
-        return view('omah')->with('produks', $products)->with('currentPage', 'ikan');
+        return view('omah')->with('products', $products)->with('currentPage', 'ikan');
     }
 
     public function ayam()
     {
-        $ayam = Kategori::where('kategori_name', 'ayam')->first();
+        $ayam = Kategori::where('id', '1')->first();
 
         // Paginate the products within the "Sapi" category with 5 items per page
-        $products = $ayam->produks();
+        $ayam->load('produks');
 
-        return view('omah')->with('produks', $products)->with('currentPage', 'ayam');
+        $products = $ayam->produks;
+        return view('omah',compact('products'));
     }
     public function snacks()
     {
@@ -180,7 +181,7 @@ public function showProducts()
         // Paginate the products within the "Sapi" category with 5 items per page
         $products = $snacks->produks();
 
-        return view('omah')->with('produks', $products)->with('currentPage', 'snacks');
+        return view('omah')->with('products', $products)->with('currentPage', 'snacks');
     }
 
 public function showDetail($id)
