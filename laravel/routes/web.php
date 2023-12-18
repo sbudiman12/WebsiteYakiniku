@@ -97,7 +97,7 @@ Route::post('/pembayaran', [KeranjangController::class, 'showPayment']);
 
 
 Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart')->middleware('auth');
-Route::get('/profil', [ProfileController::class, 'show'])->name('ndelok.show');
+Route::get('/profil', [ProfileController::class, 'show'])->name('ndelok.show')->middleware('auth');
 
 // Route to display the user's profile
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');

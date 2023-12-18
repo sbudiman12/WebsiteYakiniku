@@ -29,23 +29,29 @@
                     <div class="col-md-6">
 
                         <h1 class="display-5 fw-bolder">{{ $product->nama }}</h1>
-                        <div class="fs-5 mb-5">
+                        <div class="fs-5 mb-3">
 
                             <span>Rp. {{ $product->harga }}</span>
+
+                        </div>
+                        <div class="fs-5 mb-3">
+
+                            <span>Stock: {{ $product->stok }}</span>
+
                         </div>
                         <p class="lead">{{ $product->deskripsi }}</p>
                         <div class="d-flex">
 
-                            
+
 
                             <form action="{{ route('keranjang.addToCart', ['productId' => $product->id]) }}" method="post">
                                 @csrf
-                                <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                                <button class="btn btn-danger flex-shrink-0 follybg seasalt" type="submit">
                                     <i class="bi-cart-fill me-1"></i>
                                     Add to cart
                                 </button>
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -85,10 +91,10 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        
+
         <script src="js/scripts.js"></script>
 
-        
+
     </body>
 
     @if(session('toast'))
