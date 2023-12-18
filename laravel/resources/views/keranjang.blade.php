@@ -47,6 +47,12 @@
                             <td class="total-price" data-harga="{{ $keranjang->produk->harga }}">
                                 Rp {{ number_format($keranjang->jumlah * $keranjang->produk->harga, 0, ',', '.') }}
                             </td>
+                            <td>
+                                <button type="button" class="btn btn-danger"
+                                    onclick="removeFromCart({{ $keranjang->id }})">
+                                    Remove
+                                </button>
+                            </td>
                         </tr>
 
                         @php
@@ -67,6 +73,24 @@
                 @csrf
                 <button type="button" class="btn btn-primary" onclick="confirmPayment()">Submit Payment</button>
             </form>
+
+
+            <script>
+                function incrementQuantity(cartId) {
+                    var currentQuantity = parseInt($('#input-quantity-' + cartId).val());
+                    var newQuantity = currentQuantity + 1;
+
+
+                    // Periksa apakah newQuantity melebihi stok produk
+                    if (newQuantity <= {{ $keranjang->produk->stok }}) {
+                        $('#input-quantity-' + cartId).val(newQuantity);
+                        updateQuantity(cartId, newQuantity);
+                        showRefreshButton(); // Show the refresh button
+                    } else {
+                        alert('Stok produk hanya ada {{ $keranjang->produk->stok }}');
+                    }
+                }
+            </script>
         @else
             <p>Your shopping cart is empty.</p>
         @endif
@@ -74,7 +98,29 @@
     </div>
 
 
+    <script>
+        function removeFromCart(cartId) {
+            if (confirm("Are you sure you want to remove this item from the cart?")) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
+                $.ajax({
+                    url: '/keranjang/remove/' + cartId,
+                    method: 'DELETE',
+                    success: function(response) {
+                        console.log('Item removed from cart successfully');
+                        location.reload(); // Refresh the page after successful removal
+                    },
+                    error: function(error) {
+                        console.error('Error removing item from cart', error);
+                    }
+                });
+            }
+        }
+    </script>
 
     <script>
         function updateQuantity(cartId, newQuantity) {
@@ -99,19 +145,7 @@
             });
         }
 
-        function incrementQuantity(cartId) {
-            var currentQuantity = parseInt($('#input-quantity-' + cartId).val());
-            var newQuantity = currentQuantity + 1;
 
-            // Periksa apakah newQuantity melebihi stok produk
-            if (newQuantity <= {{ $keranjang->produk->stok }}) {
-                $('#input-quantity-' + cartId).val(newQuantity);
-                updateQuantity(cartId, newQuantity);
-                showRefreshButton(); // Show the refresh button
-            } else {
-                alert('Stok produk hanya ada {{ $keranjang->produk->stok }}');
-            }
-        }
 
         function decrementQuantity(cartId) {
             var currentQuantity = parseInt($('#input-quantity-' + cartId).val());

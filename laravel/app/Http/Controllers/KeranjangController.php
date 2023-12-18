@@ -121,6 +121,15 @@ class KeranjangController extends Controller
         return redirect('/')->with('success', 'Payment successful! Thank you for your purchase.');
     }
     
+    public function removeFromCart($id)
+    {
+        $keranjang = Keranjang::findOrFail($id);
+
+        // Hapus item dari keranjang
+        $keranjang->delete();
+
+        return response()->json(['message' => 'Item removed from cart successfully']);
+    }
   
 
     /**
