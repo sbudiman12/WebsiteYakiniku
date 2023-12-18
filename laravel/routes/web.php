@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\TransaksiController;
 use App\Models\Kategori;
 use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
@@ -55,6 +56,11 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 Route::get('/', [ProdukController::class, 'showProducts']);
 
+Route::get('/transaksis', [TransaksiController::class,'all'])->middleware('admin');
+
+Route::get('/transaksis/{transaksi}', [TransaksiController::class, 'view']);
+
+Route::patch('/transaksis/update-status/{transaksi}', [TransaksiController::class, 'updateStatus']);
 
 
 
@@ -73,3 +79,5 @@ Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
 
 
 Route::get('/home', [ProdukController::class, 'index']);
+
+

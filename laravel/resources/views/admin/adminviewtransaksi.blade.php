@@ -1,4 +1,3 @@
-
 @extends('layouts.template2') 
 
 @section('content')
@@ -15,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($transaksis as $transaksi)
+                @foreach($transaksis->sortByDesc('tanggal') as $transaksi)
                     <tr>
                         <td><a href="/transaksis/{{$transaksi['id']}}">{{ $transaksi->tanggal }}</a></td>
                         <td>{{ $transaksi->user->name }}</td>

@@ -29,4 +29,8 @@ class Transaksi extends Model
     public function transaksi_produk() {
         return $this->hasMany(Transaksi_Produk::class);
     }
+
+    public function delivery() {
+        return $this->belongsTo(Delivery::class);
+    }
 }
