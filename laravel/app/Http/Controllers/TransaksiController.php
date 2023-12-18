@@ -17,15 +17,7 @@ class TransaksiController extends Controller
         //
     }
 
-    public function all()
-    {
-
-        $transaksis = Transaksi::all();
-
-
-
-        return view('admin/adminviewtransaksi', compact('transaksis'));
-    }
+   
 
     public function view(Transaksi $transaksi)
     {
@@ -62,10 +54,7 @@ class TransaksiController extends Controller
         return view('admin/adminviewtransaksi', compact('transaksis'));
     }
 
-    public function view(Transaksi $transaksi) {
-
-        return view('admin/viewtransaksi', compact('transaksi'));
-    }
+   
 
     /**
      * Show the form for creating a new resource.
