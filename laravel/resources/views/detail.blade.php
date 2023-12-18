@@ -90,13 +90,21 @@
 
         
     </body>
-</html>
 
-@if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+    @if(session('toast'))
+    <script>
+        Toastify({
+            text: "{{ session('toast.message') }}",
+            duration: 3000,
+            close: true,
+            gravity: "bottom", // Adjust as needed
+            position: "right", // Adjust as needed
+            backgroundColor: "#28a745", // Green color, adjust as needed
+        }).showToast();
+    </script>
 @endif
+
+</html>
 
 
 @endsection
