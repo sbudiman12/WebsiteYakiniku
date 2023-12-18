@@ -63,21 +63,41 @@
             width:100%;
             object-fit: cover;
         }
+        .hover-expand:hover {
+    transform: scale(1.05); /* Increase the scale value for a larger expansion */
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
 
     </style>
 </head>
 
 <body  style="height: 50vh">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <div class=" cbbg navbar navbar-expand-sm d-flex justify-content-between ">
+    <div class=" cbbg navbar navbar-expand-sm d-flex justify-content-around ">
 
-            <img src="{{ url('/assets/logo1.png') }}" class="p-1" style="height: 80px" />
-            <div>
-                <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem;" class="seasalt">Yakiniku At Home</h1>
+            <div style="width:400px;">
+                <a href="/">
+                <img src="{{ url('/assets/logo1.png') }}" class="" style="height: 80px" />
+                </a>
             </div>
-            <div>
-                <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem; color: #800000;">Icon here</h1>
-        </div>
+            <div style="width:400px;">
+
+                    <h1 style="font-family: 'Agbalumo'; font-size: 2.5rem;" class="seasalt">Yakiniku At Home</h1>
+
+            </div>
+            <div style="width:400px;">
+                <div class="d-flex justify-content-center">
+                    <a href="" class="px-2">
+                        <img src="{{ url('/assets/keranjang.png') }}" alt="" style="width: 40px;" >
+                    </a>
+                    <a href="" class="px-2">
+                        <img src="{{ url('/assets/love.png') }}" alt="" style="width: 40px;">
+                    </a>
+                    <a href="" class="px-2">
+                        <img src="{{ url('/assets/profile.png') }}" alt="" style="width: 40px;">
+                    </a>
+                            </div>
+            </div>
         </div>
 
     </div>

@@ -87,7 +87,9 @@ Route::get('/produk-sapi', [ProdukController::class, 'sapi']);
 Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
 
 
-Route::post('/pembayaran', [KeranjangController::class, 'showPayment']);
+Route::get('/home', [ProdukController::class, 'index']);
+
+Route::get('/product/{produk}', [ProdukController::class,'related']);
 
 Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment']);
 

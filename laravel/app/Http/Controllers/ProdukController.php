@@ -148,22 +148,24 @@ public function showProducts()
 
     public function sapi()
     {
-        $sapi = Kategori::where('kategori_name', 'sapi')->first();
+        $sapi = Kategori::where('id', '2')->first();
 
         // Paginate the products within the "Sapi" category with 5 items per page
-        $products = $sapi->produks();
+        $sapi->load('produks');
+        $products = $sapi->produks;
 
-        return view('omah')->with('products', $products)->with('currentPage', 'Sapi');
+        return view('omah', compact('products'));
     }
 
     public function ikan()
     {
-        $ikan = Kategori::where('kategori_name', 'ikan')->first();
+        $ikan = Kategori::where('id', '3')->first();
 
         // Paginate the products within the "Sapi" category with 5 items per page
-        $products = $ikan->produks();
+        $ikan->load('produks');
+        $products = $ikan->produks;
 
-        return view('omah')->with('products', $products)->with('currentPage', 'ikan');
+        return view('omah', compact('products'));
     }
 
     public function ayam()
@@ -172,18 +174,21 @@ public function showProducts()
 
         // Paginate the products within the "Sapi" category with 5 items per page
         $ayam->load('produks');
-
         $products = $ayam->produks;
-        return view('omah',compact('products'));
+
+        return view('omah', compact('products'));
+
     }
     public function snacks()
     {
-        $snacks = Kategori::where('kategori_name', 'snacks')->first();
+        $snacks = Kategori::where('id', '4')->first();
 
         // Paginate the products within the "Sapi" category with 5 items per page
-        $products = $snacks->produks();
+        $snacks->load('produks');
+        $products = $snacks->produks;
 
-        return view('omah')->with('products', $products)->with('currentPage', 'snacks');
+        return view('omah', compact('products'));
+
     }
 
 public function showDetail($id)
@@ -203,6 +208,18 @@ public function toggleFavorite(Produk $product)
 
     // Redirect back or to a specific page
     return redirect()->back()->with('success', 'Product added to favorites!');
+}
+
+public function related(Produk $produk)
+{
+    $product = $produk;
+    // Fetch related products with the same kategori_id
+    $relatedProducts = Produk::where('kategori_id', $product->kategori_id)
+        ->where('id', '!=', $product->id) // Exclude the current product
+        ->limit(4) // Adjust the number of related products to display
+        ->get();
+
+    return view('detail', compact('product', 'relatedProducts'));
 }
 
 
