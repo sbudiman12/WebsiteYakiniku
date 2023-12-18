@@ -87,18 +87,29 @@ Route::get('/produk-sapi', [ProdukController::class, 'sapi']);
 Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
 
 
-Route::get('/home', [ProdukController::class, 'index']);
+// Route::get('/home', [ProdukController::class, 'index']);
 
 Route::get('/product/{produk}', [ProdukController::class,'related']);
 
 Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment']);
 
+Route::post('/pembayaran', [KeranjangController::class, 'showPayment']);
+
+
 Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart');
-Route::get('/ndelok', [ProfileController::class, 'show'])->name('ndelok.show');
+Route::get('/profil', [ProfileController::class, 'show'])->name('ndelok.show');
+
+// Route to display the user's profile
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
 // Route to display the edit form for the user's profile
-Route::get('/ndelok/edit', [ProfileController::class, 'edit'])->name('ndelok.edit');
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
 // Route to handle the form submission and update the user's profile
-Route::put('/ndelok/update', [ProfileController::class, 'update'])->name('ndelok.update');
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+// // Route to display the edit form for the user's profile
+// Route::get('/ndelok/edit', [ProfileController::class, 'edit'])->name('ndelok.edit');
+
+// // Route to handle the form submission and update the user's profile
+// Route::put('/ndelok/update', [ProfileController::class, 'update'])->name('ndelok.update');
 
