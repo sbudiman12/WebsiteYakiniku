@@ -80,4 +80,6 @@ Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
 
 Route::get('/home', [ProdukController::class, 'index']);
 
+Route::get('/product/{produk}', [ProdukController::class,'related']);
+
 
