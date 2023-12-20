@@ -23,6 +23,7 @@ class TransaksiFactory extends Factory
             'user_id' => $this->faker->numberBetween(1, 5),
             'status_id' => $this->faker->numberBetween(1, 2),
             'delivery_id' => $this->faker->randomElement([1, 2]),
+            'alamat' => $this->faker->address
         ];
     }
 }

@@ -15,6 +15,7 @@ class Transaksi extends Model
         'user_id',
         'status_id',
         'delivery_id',
+        'alamat'
     ];
 
     public function user() {
