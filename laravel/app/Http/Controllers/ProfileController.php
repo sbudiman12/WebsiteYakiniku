@@ -25,7 +25,6 @@ class ProfileController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'alamat' => 'required|string|max:255',
             'phone_number' => 'required|string|max:20', // Adjust the validation rule according to your needs
         ]);
 

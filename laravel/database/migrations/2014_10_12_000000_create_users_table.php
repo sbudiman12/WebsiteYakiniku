@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('alamat')->nullable();
             $table->enum('is_login', ['0','1'])->default('0');
             $table->enum('is_active', ['0','1'])->default('0');
             $table->unsignedBigInteger('role_id');

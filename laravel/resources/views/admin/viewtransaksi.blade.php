@@ -20,8 +20,13 @@
                             Change Status
                         </button>
                     </li>
-                    <li class="list-group-item"><strong>Delivery ID:</strong> {{ $transaksi->delivery->delivery_name }}</li>
+                    <li class="list-group-item"><strong>Delivery: </strong> {{ $transaksi->delivery->delivery_name }}</li>
+
+                    <li class="list-group-item"><strong>Alamat: </strong>{{$transaksi->alamat}}</li>
+
                     <li class="list-group-item"><strong>Produks:</strong>
+
+                        
                         <ul>
                             @php
                                 $subtotal = 0;

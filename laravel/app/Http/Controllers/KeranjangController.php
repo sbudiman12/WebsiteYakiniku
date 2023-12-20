@@ -124,12 +124,12 @@ class KeranjangController extends Controller
             'user_id' => auth()->user()->id,
             'status_id' => 2,
             'delivery_id' => $request->input('delivery'),
+            'alamat' => $request->input('alamat')
         ]);
 
         $keranjangs = auth()->user()->keranjang;
 
         foreach ($keranjangs as $keranjang) {
-            // Mengurangi stok produk sesuai dengan jumlah di keranjang
             $produk = $keranjang->produk;
             $produk->stok -= $keranjang->jumlah;
             $produk->save();

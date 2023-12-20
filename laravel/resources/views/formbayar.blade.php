@@ -97,13 +97,19 @@
             <div class="card-body">
                 <h2>Delivery Options</h2>
 
-                <div class="form-group">
-                    <label for="delivery">Choose Delivery Option:</label>
-                    <select class="form-control" id="delivery" name="delivery" required>
-                        <option value="1">Pickup</option>
-                        <option value="2">Kurir</option>
-                    </select>
-                </div>
+        <div class="form-group">
+            <label for="delivery">Choose Delivery Option:</label>
+            <select class="form-control" id="delivery" name="delivery" required>
+                <option value="1">Pickup</option>
+                <option value="2">Kurir</option>
+            </select>
+        </div>
+
+        <!-- Address Form -->
+        <div class="form-group">
+            <label for="alamat">Delivery Address:</label>
+            <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
+        </div>
 
                 <h2>Payment Confirmation</h2>
 
