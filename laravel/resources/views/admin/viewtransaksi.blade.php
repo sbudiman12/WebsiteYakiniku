@@ -39,7 +39,19 @@
                    
 
                     <!-- Display Subtotal -->
-                    <li class="list-group-item"><strong>Subtotal:</strong> Rp {{ number_format($subtotal, 0, ',', '.') }}</li>
+                    <li class="list-group-item"><strong>Subtotal:</strong> Rp {{ number_format($subtotal, 0, ',', '.') }}
+                    
+                        
+
+                        @if($transaksi->delivery->id === 2)
+                            
+                        + 7.000 = Rp {{ number_format($subtotal + 7000, 0, ',', '.') }}
+
+                        @endif
+
+                        
+                    
+                    </li>
 
                     <li>
                         <img src="{{ asset('storage/' . $transaksi->bukti_transfer) }}" class="img-thumbnail">
