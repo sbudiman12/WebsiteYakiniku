@@ -21,10 +21,7 @@
 
                     @endif
 
-                    @if (Auth::user()->isAdmin())
-                    <p>Just a Regular Admin</p>
-
-                @endif
+                  
                 </div>
             </div>
         </div>
