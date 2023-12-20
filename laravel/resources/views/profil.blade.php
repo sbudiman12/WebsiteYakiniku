@@ -23,11 +23,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="alamat">Address:</label>
-                                <input type="text" id="alamat" name="alamat" value="{{ auth()->user()->alamat }}" class="form-control" required>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="phone_number">Phone Number:</label>
                                 <input type="tel" id="phone_number" name="phone_number" value="{{ auth()->user()->phone_number }}" class="form-control" required>
                             </div>

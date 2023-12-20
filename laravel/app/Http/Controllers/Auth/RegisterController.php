@@ -87,6 +87,8 @@ class RegisterController extends Controller
             redirect()->route('register');
         }
 
-        return redirect()->route('login');
+        $message = 'Berhasil Membuat Akun, Silahkan Login';
+        return redirect()->route('login')->with('toast', compact('message'));
+
     }
 }

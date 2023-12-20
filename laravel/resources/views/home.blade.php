@@ -16,11 +16,6 @@
 
                     {{ __('You are logged in!') }}
 
-                    @if (Auth::user()->isMember())
-                        <p>Just a Regular Member</p>
-
-                    @endif
-
                   
                 </div>
             </div>
