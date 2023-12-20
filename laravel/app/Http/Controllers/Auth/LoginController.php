@@ -43,7 +43,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-       
+
 
         $member = [
             'email' => $request->email,
@@ -51,7 +51,7 @@ class LoginController extends Controller
             'role_id' => 2,
             'is_active' => '1'
         ];
-        
+
         $admin = [
             'email' => $request->email,
             'password' => $request->password,
@@ -63,7 +63,7 @@ class LoginController extends Controller
         if (Auth::attempt($admin)) {
 
             $this->isLogin(Auth::id());
-            return redirect()->route('home');
+            return redirect()->route('/');
         }
 
         else if (Auth::attempt($member)) {
@@ -72,7 +72,7 @@ class LoginController extends Controller
             return redirect()->route('home');
         }
 
-      
+
         return redirect()->route('login');
     }
 

@@ -1,66 +1,31 @@
 <?php
 
+// FavoritesController.php
+
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreFavoritesRequest;
-use App\Http\Requests\UpdateFavoritesRequest;
 use App\Models\Favorites;
+use App\Models\Produk;
+use Illuminate\Http\Request;
 
 class FavoritesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function addToFavorites(Request $request, $id)
     {
-        //
-    }
+        $product = Produk::findOrFail($id);
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        // Check if the product is already in favorites
+        $existingFavorite = Favorites::where('user_id', auth()->id())
+            ->where('product_id', $product->id)
+            ->first();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreFavoritesRequest $request)
-    {
-        //
-    }
+        if ($existingFavorite) {
+            return response()->json(['success' => false, 'message' => 'Product already in favorites']);
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Favorites $favorites)
-    {
-        //
-    }
+        // Add the product to favorites
+        auth()->user()->favorites()->create(['product_id' => $product->id]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Favorites $favorites)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateFavoritesRequest $request, Favorites $favorites)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Favorites $favorites)
-    {
-        //
+        return response()->json(['success' => true, 'message' => 'Product added to favorites']);
     }
 }

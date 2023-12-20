@@ -93,7 +93,7 @@
                     <a href="/keranjang" class="px-2">
                         <img src="{{ url('/assets/keranjang.png') }}" alt="" style="width: 40px;" >
                     </a>
-                    <a href="" class="px-2">
+                    <a href="/favorites" class="px-2">
                         <img src="{{ url('/assets/love.png') }}" alt="" style="width: 40px;">
                     </a>
                     <a href="/profil" class="px-2">

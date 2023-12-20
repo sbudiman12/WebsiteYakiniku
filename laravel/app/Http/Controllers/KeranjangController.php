@@ -45,7 +45,7 @@ class KeranjangController extends Controller
 
             // Calculate the total price after the update
             $totalHarga =$cartItem->jumlah * $cartItem->produk->harga;
-        
+
             // Return a response with the updated total price
             return response()->json(['totalHarga' => $totalHarga]);
         }
@@ -55,15 +55,15 @@ class KeranjangController extends Controller
     }
 
     public function all(){
-        
-        
+
+
         $userId = Auth::id();
-        
+
 
         // Fetch Keranjang records for the authenticated user
         $keranjangs = Keranjang::where('user_id', $userId)->get();
 
-        
+
 
         return view('keranjang', compact('keranjangs'));
     }
@@ -113,28 +113,28 @@ class KeranjangController extends Controller
         // Validate the form data
         $request->validate([
             'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'delivery' => 'required|in:1,2', 
+            'delivery' => 'required|in:1,2',
         ]);
-    
+
         $buktiTransferPath = $request->file('bukti_transfer')->store('bukti_transfer', 'public');
-    
+
         $transaksi = Transaksi::create([
             'tanggal' => Carbon::now(),
             'bukti_transfer' => $buktiTransferPath,
             'user_id' => auth()->user()->id,
-            'status_id' => 2, 
+            'status_id' => 2,
             'delivery_id' => $request->input('delivery'),
         ]);
-    
+
         $keranjangs = auth()->user()->keranjang;
-        
+
         foreach ($keranjangs as $keranjang) {
             // Mengurangi stok produk sesuai dengan jumlah di keranjang
             $produk = $keranjang->produk;
             $produk->stok -= $keranjang->jumlah;
             $produk->save();
         }
-    
+
         $transaksi->transaksi_produk()->createMany($keranjangs->map(function ($keranjang) {
             return [
                 'product_id' => $keranjang->produk_id,
@@ -142,13 +142,13 @@ class KeranjangController extends Controller
                 'jumlah' => $keranjang->jumlah,
             ];
         })->toArray());
-    
+
         // Menghapus item di keranjang setelah transaksi selesai
         auth()->user()->keranjang()->delete();
-    
+
         return redirect('/')->with('success', 'Payment successful! Thank you for your purchase.');
     }
-    
+
     public function removeFromCart($id)
     {
         $keranjang = Keranjang::findOrFail($id);
@@ -158,7 +158,7 @@ class KeranjangController extends Controller
 
         return response()->json(['message' => 'Item removed from cart successfully']);
     }
-  
+
 
     /**
      * Show the form for creating a new resource.
@@ -207,4 +207,5 @@ class KeranjangController extends Controller
     {
         //
     }
+
 }

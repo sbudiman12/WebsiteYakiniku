@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Models\Keranjang;
+use App\Http\Controllers\FavoritesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +54,7 @@ Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 
-Route::get('/', [ProdukController::class, 'showProducts']);
+Route::get('/', [ProdukController::class, 'showProducts'])->name('/');
 
 Route::get('/transaksis', [TransaksiController::class, 'all'])->middleware('admin');
 
@@ -113,3 +114,8 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 // // Route to handle the form submission and update the user's profile
 // Route::put('/ndelok/update', [ProfileController::class, 'update'])->name('ndelok.update');
 
+
+Route::get('/product/{id}', 'ProductController@show')->name('product.show');
+
+// Route to handle adding a product to favorites
+Route::post('/favorites/add-to-favorites/{id}', 'FavoritesController@addToFavorites')->name('favorites.addToFavorites');
