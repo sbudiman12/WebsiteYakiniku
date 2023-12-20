@@ -20,7 +20,21 @@
                         <td>{{ $transaksi->user->name }}</td>
                         <td>{{ $transaksi->status->status_name }}</td>
                         <td>{{ $transaksi->delivery->delivery_name }}</td>
-                        <td>{{ calculateTotalHarga($transaksi->transaksi_produk) }}</td>
+                        <td>{{ 
+                        
+                        
+                        calculateTotalHarga($transaksi->transaksi_produk)
+                       
+                        
+
+                        }}
+                    
+                    @if($transaksi->delivery->id === 2)
+                            + 7000
+                        
+                    @endif
+                    
+                    </td>
                     </tr>
                 @endforeach
             </tbody>
