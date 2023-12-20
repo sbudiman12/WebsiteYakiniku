@@ -103,7 +103,7 @@
             <a href="/produk-ayam">
             <img src="{{ url('/assets/ayam.png') }}" class="card-img-top" alt="...">
             </a>
-  
+
         </div>
        <div class="text-center text-wrap">
         <h5 class="pt-2">Ayam</h5>
@@ -150,7 +150,7 @@
                 </a>
                 <div class="card-body">
                     <h4 class="card-title">{{ $product->nama }}</h4>
-                    <h5 class="card-text">Rp.{{ $product->harga }}</h5>
+                    <h5 class="card-text">Rp. {{ number_format($product->harga, 0, ',', '.') }}</h5>
                 </div>
             </div>
         </div>

@@ -68,6 +68,7 @@ Route::get('/keranjang' ,[KeranjangController::class, 'all'])->middleware('auth'
 Route::patch('/keranjang/update-quantity/{id}', [KeranjangController::class, 'updateQuantity'])->middleware('web');
 
 Route::delete('/keranjang/remove/{id}', [KeranjangController::class, 'removeFromCart']);
+Route::delete('/favorites/remove/{id}', [FavoritesController::class, 'removeFromFavorites']);
 
 
 Route::view('/admin', 'admin/blank')->middleware('admin');
@@ -118,4 +119,8 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 Route::get('/product/{id}', 'ProductController@show')->name('product.show');
 
 // Route to handle adding a product to favorites
-Route::post('/favorites/add-to-favorites/{id}', 'FavoritesController@addToFavorites')->name('favorites.addToFavorites');
+// Route to handle adding a product to favorites
+Route::post('/favorites/add-to-favorites/{productId}', [FavoritesController::class, 'addToFavorites'])->name('favorites.addToFavorites');
+
+// View favorites
+Route::get('/favorites' ,[FavoritesController::class, 'all'])->middleware('auth');

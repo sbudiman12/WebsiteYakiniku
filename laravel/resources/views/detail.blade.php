@@ -29,7 +29,7 @@
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder">{{ $product->nama }}</h1>
                     <div class="fs-5 mb-3">
-                        <span>Rp. {{ $product->harga }}</span>
+                        <span>Rp. {{ number_format($product->harga, 0, ',', '.') }}</span>
                     </div>
                     <div class="fs-5 mb-3">
                         <span>Stock: {{ $product->stok }}</span>
@@ -38,16 +38,22 @@
                     <div class="d-flex">
                         <form action="{{ route('keranjang.addToCart', ['productId' => $product->id]) }}" method="post">
                             @csrf
-                            <button class="btn btn-danger flex-shrink-0 follybg seasalt" type="submit">
+
+                            <button class="btn btn-danger flex-shrink-0 follybg seasalt " type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Add to cart
                             </button>
+
                         </form>
-                        <div class="px-3">
-                            <a href="#" onclick="addToFavorites({{ $product->id }})">
-                                <img id="loveButton" src="{{ asset('assets/loveout.png') }}" alt="" style="width: 50px; height:50px;">
-                            </a>
+
+                        <form id="addToFavoritesForm" action="{{ route('favorites.addToFavorites', ['productId' => $product->id]) }}" method="post">
+                            @csrf
+                            <div class="smol">
+                            <button class="noborder " type="" onclick="addToFavorites({{ $product->id }})">
+                                <img src="{{ asset('assets/lovefill.png') }}" alt="" class="small">
+                            </button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -87,25 +93,34 @@
     <!-- Core theme JS -->
     <script src="js/scripts.js"></script>
     <!-- Custom script for adding to favorites -->
-    <script>
+    {{-- <script>
         function addToFavorites(productId) {
             $.ajax({
                 url: '/favorites/add-to-favorites/' + productId,
                 method: 'POST',
                 data: { _token: '{{ csrf_token() }}' },
                 success: function (response) {
-                    alert(response.success);
-                    // Update the loveButton image to lovefill.png
-                    $('#loveButton').attr('src', '{{ asset('assets/lovefill.png') }}');
+                    alert(response.message); // Display success message
+                    // Update the UI or perform any additional actions here
                 },
                 error: function (error) {
                     console.error('Error adding to favorites', error);
                 }
             });
         }
-    </script>
-</body>
-@if(session('toast'))
+
+        @if(session('toast'))
+            Toastify({
+                text: "{{ session('toast.message') }}",
+                duration: 3000,
+                close: true,
+                gravity: "bottom", // Adjust as needed
+                position: "right", // Adjust as needed
+                backgroundColor: "#28a745", // Green color, adjust as needed
+            }).showToast();
+        @endif
+    </script> --}}
+    @if(session('toast'))
     <script>
         Toastify({
             text: "{{ session('toast.message') }}",
@@ -117,5 +132,6 @@
         }).showToast();
     </script>
 @endif
+</body>
 </html>
 @endsection

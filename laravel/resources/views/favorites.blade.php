@@ -4,24 +4,79 @@
     <div class="container mt-4">
         <h1>Your Favorites</h1>
 
-        @if (count($favorites) > 0)
-            <div class="row">
-                @foreach ($favorites as $favorite)
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <img src="{{ asset('assets/' . $favorite->produk->gambar) }}" class="card-img-top" alt="{{ $favorite->produk->nama }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $favorite->produk->nama }}</h5>
-                                <p class="card-text">Stock: {{ $favorite->produk->stok }}</p>
-                                <p class="card-text">Price: Rp. {{ $favorite->produk->harga }}</p>
-                                <!-- Add more details as needed -->
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+        @if (count($favoriteProducts) > 0)
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Image</th>
+
+                        <th>Price</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $totalHarga = 0;
+                    @endphp
+
+                    @foreach ($favoriteProducts as $favoriteProduct)
+                        <tr>
+                            <td>{{ $favoriteProduct->produk->nama }}</td>
+                            <td>
+                                <img src="{{ asset('assets/' . $favoriteProduct->produk->gambar) }}" alt="Product Image"
+                                    style="max-width: 100px;">
+                            </td>
+
+                            <td>Rp {{ number_format($favoriteProduct->produk->harga, 0, ',', '.') }}</td>
+
+                            <td>
+                                <button type="button" class="btn btn-danger"
+                                    onclick="removeFromFavorites({{ $favoriteProduct->id }})">
+                                    Remove
+                                </button>
+                            </td>
+                        </tr>
+
+                        @php
+                            $totalHarga += $favoriteProduct->harga;
+                        @endphp
+                    @endforeach
+
+
+                </tbody>
+            </table>
+
+
+
+
+
+            <script>
+                function removeFromFavorites(cartId) {
+                    if (confirm("Are you sure you want to remove this item from the list?")) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+
+                        $.ajax({
+                            url: '/favorites/remove/' + cartId,
+                            method: 'DELETE',
+                            success: function(response) {
+                                console.log('Item removed from list successfully');
+                                location.reload(); // Refresh the page after successful removal
+                            },
+                            error: function(error) {
+                                console.error('Error removing item from list', error);
+                            }
+                        });
+                    }
+                }
+            </script>
         @else
-            <p>Your favorites list is empty. Add your favorite products by clicking the love button.</p>
+            <p>Your favorites list is empty.</p>
         @endif
+
     </div>
 @endsection

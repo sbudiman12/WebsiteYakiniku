@@ -1,31 +1,89 @@
 <?php
 
-// FavoritesController.php
-
 namespace App\Http\Controllers;
 
 use App\Models\Favorites;
-use App\Models\Produk;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 
 class FavoritesController extends Controller
 {
-    public function addToFavorites(Request $request, $id)
+    public function updateQuantity(Request $request, $id)
     {
-        $product = Produk::findOrFail($id);
+        // Your code here for updating quantity in favorites
+        // ...
 
+        return response()->json(['message' => 'Quantity updated successfully']);
+    }
+
+    public function all()
+    {
+        $userId = Auth::id();
+
+        // Fetch favorite products for the authenticated user
+        $favoriteProducts = Favorites::where('user_id', $userId)
+            ->with('produk') // Assuming you have a relation in Favorites model named 'produk'
+            ->get();
+
+        return view('favorites', compact('favoriteProducts'));
+    }
+
+    public function showPayment()
+    {
+        // Your code here for showing payment in favorites
+        // ...
+
+        // return view('formbayar-favorites', compact('favoriteProducts'));
+    }
+
+    public function index()
+    {
+        // Your code here for index action in favorites
+        // ...
+    }
+
+    public function addToFavorites(Request $request, $productId)
+    {
         // Check if the product is already in favorites
-        $existingFavorite = Favorites::where('user_id', auth()->id())
-            ->where('product_id', $product->id)
+        $existingFavorite = Favorites::where('user_id', auth()->user()->id)
+            ->where('produk_id', $productId)
             ->first();
 
-        if ($existingFavorite) {
-            return response()->json(['success' => false, 'message' => 'Product already in favorites']);
+        // If not, add it to favorites
+        if (!$existingFavorite) {
+            Favorites::create([
+                'user_id' => auth()->user()->id,
+                'produk_id' => $productId,
+            ]);
+
+            $message = 'Item added to favorites successfully';
+            return redirect()->back()->with('toast', compact('message'));
         }
 
-        // Add the product to favorites
-        auth()->user()->favorites()->create(['product_id' => $product->id]);
-
-        return response()->json(['success' => true, 'message' => 'Product added to favorites']);
+        // You may want to return a response or redirect here if the product is already in favorites
+        $message = 'Item already in favorites';
+        return redirect()->back()->with('toast', compact('message'));
     }
+
+    public function processPayment(Request $request)
+    {
+        // Your code here for processing payment in favorites
+        // ...
+
+        // return redirect('/favorites')->with('success', 'Payment successful! Thank you for your purchase.');
+    }
+
+    public function removeFromFavorites($id)
+    {
+        $keranjang = Favorites::findOrFail($id);
+
+        // Hapus item dari keranjang
+        $keranjang->delete();
+
+
+        return response()->json(['message' => 'Product removed from favorites successfully']);
+    }
+
+    // ... other methods ...
 }

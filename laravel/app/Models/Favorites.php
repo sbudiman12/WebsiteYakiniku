@@ -13,7 +13,7 @@ class Favorites extends Model
 
     protected $fillable = [
         'user_id',
-        'product_id',
+        'produk_id',
         // tambahkan atribut lainnya sesuai kebutuhan
     ];
     public function user(): BelongsTo

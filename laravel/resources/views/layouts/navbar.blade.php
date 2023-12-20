@@ -66,9 +66,21 @@
             width:100%;
             object-fit: cover;
         }
+        .small{
+            width:100%;
+
+        }
+        .smol{
+            width:20%;
+
+        }
         .hover-expand:hover {
     transform: scale(1.05); /* Increase the scale value for a larger expansion */
     transition: transform 0.3s ease; /* Add a smooth transition effect */
+}
+.noborder{
+    background-color: white;
+border: none;
 }
 
     </style>
@@ -192,8 +204,8 @@
 
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright:
-        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+       Designed by Maverick and Steven
+
       </div>
       <!-- Copyright -->
     </footer>
