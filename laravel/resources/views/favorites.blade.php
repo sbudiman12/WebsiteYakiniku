@@ -5,51 +5,44 @@
         <h1>Your Favorites</h1>
 
         @if (count($favoriteProducts) > 0)
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Image</th>
-
-                        <th>Price</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @php
-                        $totalHarga = 0;
-                    @endphp
-
-                    @foreach ($favoriteProducts as $favoriteProduct)
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td>{{ $favoriteProduct->produk->nama }}</td>
-                            <td>
-                                <img src="{{ asset('assets/' . $favoriteProduct->produk->gambar) }}" alt="Product Image"
-                                    style="max-width: 100px;">
-                            </td>
-
-                            <td>Rp {{ number_format($favoriteProduct->produk->harga, 0, ',', '.') }}</td>
-
-                            <td>
-                                <button type="button" class="btn btn-danger"
-                                    onclick="removeFromFavorites({{ $favoriteProduct->id }})">
-                                    Remove
-                                </button>
-                            </td>
+                            <th>Product</th>
+                            <th>Image</th>
+                            <th>Price</th>
+                            <th>Action</th>
                         </tr>
-
+                    </thead>
+                    <tbody>
                         @php
-                            $totalHarga += $favoriteProduct->harga;
+                            $totalHarga = 0;
                         @endphp
-                    @endforeach
 
+                        @foreach ($favoriteProducts as $favoriteProduct)
+                            <tr>
+                                <td>{{ $favoriteProduct->produk->nama }}</td>
+                                <td>
+                                    <img src="{{ asset('assets/' . $favoriteProduct->produk->gambar) }}"
+                                        alt="Product Image" style="max-width: 100px;" class="img-fluid">
+                                </td>
+                                <td>Rp {{ number_format($favoriteProduct->produk->harga, 0, ',', '.') }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger"
+                                        onclick="removeFromFavorites({{ $favoriteProduct->id }})">
+                                        Remove
+                                    </button>
+                                </td>
+                            </tr>
 
-                </tbody>
-            </table>
-
-
-
-
+                            @php
+                                $totalHarga += $favoriteProduct->harga;
+                            @endphp
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
             <script>
                 function removeFromFavorites(cartId) {
@@ -77,6 +70,5 @@
         @else
             <p>Your favorites list is empty.</p>
         @endif
-
     </div>
 @endsection

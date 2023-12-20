@@ -1,13 +1,10 @@
-<!-- resources/views/pembayaran/form.blade.php -->
-
 @extends('layouts.navbar')
 
 @section('content')
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
 <div class="container mt-4">
-    <h1>Payment Confirmation</h1>
+    <h1 class="mb-4">Payment Confirmation</h1>
 
     <form action="/pembayaran/process" method="POST" enctype="multipart/form-data">
         @csrf
@@ -16,73 +13,73 @@
             <div class="card-body">
                 <h2>Your Shopping Cart</h2>
 
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $totalHarga = 0;
-                            $tambahan = 0;
-                        @endphp
-
-                        @foreach($keranjangs as $keranjang)
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td>{{ $keranjang->produk->nama }}</td>
-                                <td>{{ $keranjang->jumlah }}</td>
-                                <td>Rp {{ number_format($keranjang->produk->harga, 0, ',', '.') }}</td>
-                                <td>Rp {{ number_format($keranjang->jumlah * $keranjang->produk->harga, 0, ',', '.') }}</td>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
                             </tr>
-
+                        </thead>
+                        <tbody>
                             @php
-                                $totalHarga += $keranjang->jumlah * $keranjang->produk->harga;
+                                $totalHarga = 0;
+                                $tambahan = 0;
                             @endphp
-                        @endforeach
 
-                        <script>
-                            $(document).ready(function() {
-                                // Initial total
-                                var totalHarga = {{ $totalHarga }};
+                            @foreach($keranjangs as $keranjang)
+                                <tr>
+                                    <td>{{ $keranjang->produk->nama }}</td>
+                                    <td>{{ $keranjang->jumlah }}</td>
+                                    <td>Rp {{ number_format($keranjang->produk->harga, 0, ',', '.') }}</td>
+                                    <td>Rp {{ number_format($keranjang->jumlah * $keranjang->produk->harga, 0, ',', '.') }}</td>
+                                </tr>
 
-                                var hargaAwal = {{$totalHarga}};
-                        
-                                // Function to update total based on delivery option
-                                function updateTotal() {
-                                    var deliveryOption = $('#delivery').val();
-                        
-                                    // Update total based on the delivery option
-                                    if (deliveryOption === '2') { // Kurir
-                                        totalHarga += 7000;
-                                        tambahan = 7000;
-                                        
-                                    }
-                                    else if (deliveryOption === '1') {
-                                        totalHarga = hargaAwal;
-                                        tambahan = 0;
-                                    }
-                        
-                                    // Display the updated total
-                                    $('#totalHarga').text('Total : Rp ' + totalHarga.toLocaleString());
+                                @php
+                                    $totalHarga += $keranjang->jumlah * $keranjang->produk->harga;
+                                @endphp
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-                                    $('#tambahan').text('Biaya Ongkir : Rp ' + tambahan.toLocaleString());
-                                }
-                        
-                                // Initial update
-                                updateTotal();
-                        
-                                // Listen for the change event on the delivery option
-                                $('#delivery').on('change', function() {
-                                    updateTotal();
-                                });
-                            });
-                        </script>
-                    </tbody>
-                </table>
+                <script>
+                    $(document).ready(function() {
+                        // Initial total
+                        var totalHarga = {{ $totalHarga }};
+                        var hargaAwal = {{$totalHarga}};
+
+                        // Function to update total based on delivery option
+                        function updateTotal() {
+                            var deliveryOption = $('#delivery').val();
+
+                            // Update total based on the delivery option
+                            if (deliveryOption === '2') { // Kurir
+                                totalHarga += 7000;
+                                tambahan = 7000;
+
+                            }
+                            else if (deliveryOption === '1') {
+                                totalHarga = hargaAwal;
+                                tambahan = 0;
+                            }
+
+                            // Display the updated total
+                            $('#totalHarga').text('Sub Total: Rp ' + totalHarga.toLocaleString());
+                            $('#tambahan').text('Delivery Fee: Rp ' + tambahan.toLocaleString());
+                        }
+
+                        // Initial update
+                        updateTotal();
+
+                        // Listen for the change event on the delivery option
+                        $('#delivery').on('change', function() {
+                            updateTotal();
+                        });
+                    });
+                </script>
 
                 <div class="row mt-3">
                     <div class="col-sm-6">
@@ -114,15 +111,11 @@
                     <label for="bukti_transfer">Proof of Payment (Image):</label>
                     <input type="file" class="form-control-file" id="bukti_transfer" name="bukti_transfer" accept="image/*" required>
                 </div>
-
+<br>
                 <button type="submit" class="btn btn-primary">Submit Payment</button>
             </div>
         </div>
     </form>
-
 </div>
-
-
-
 
 @endsection
