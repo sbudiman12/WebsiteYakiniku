@@ -69,7 +69,7 @@
             </div>
 
             <!-- Submit Button with Confirmation -->
-            <form id="pembayaranForm" action="{{route('lihat.form')}}" method="post">
+            <form id="pembayaranForm" action="/showpembayaran" method="POST">
                 @csrf
                 <button type="button" class="btn btn-primary" onclick="confirmPayment()">Submit Payment</button>
             </form>

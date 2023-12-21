@@ -22,7 +22,7 @@
 
                         @foreach ($favoriteProducts as $favoriteProduct)
                             <tr>
-                                <td>{{ $favoriteProduct->produk->nama }}</td>
+                                <td><a href="/product/{{$favoriteProduct->produk->id}}">{{ $favoriteProduct->produk->nama }}</a></td>
                                 <td>
                                     <img src="{{ asset('assets/' . $favoriteProduct->produk->gambar) }}"
                                         alt="Product Image" style="max-width: 100px;" class="img-fluid">

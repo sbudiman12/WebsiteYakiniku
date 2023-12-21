@@ -94,9 +94,11 @@ Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
 
 Route::get('/product/{produk}', [ProdukController::class,'related']);
 
-Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment'])->name('pembayaranprocess');
 
-Route::post('/showformpembayaran', [KeranjangController::class, 'showPayment'])->name('lihat.form')->middleware('auth');
+
+Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment'])->name('pembayaranprocess')->middleware('auth');
+
+Route::post('/showpembayaran', [KeranjangController::class, 'showPayment'])->name('lihat.form')->middleware('auth');
 
 
 Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart')->middleware('auth');
