@@ -10,16 +10,17 @@
         @csrf
 
         <div class="card mb-4">
+            <div class="card-header cbbg seasalt">        <h2>Keranjang</h2></div>
             <div class="card-body">
-                <h2>Your Shopping Cart</h2>
+
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
+                                <th>Produk</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -94,8 +95,9 @@
         </div>
 
         <div class="card mb-4">
+            <div class="card-header cbbg seasalt"> <h2>Metode Pengiriman</h2></div>
             <div class="card-body">
-                <h2>Metode Pengiriman</h2>
+
 
         <div class="form-group">
             <label for="delivery">Pilih Metode Pengiriman:</label>
@@ -111,7 +113,7 @@
             <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
         </div>
 
-                <h2>KOnfirmasi Pembayaran</h2>
+                <h2>Konfirmasi Pembayaran</h2>
 
                 <div class="form-group">
                     <label for="bukti_transfer">Bukti Pembayaran (Image):</label>

@@ -14,7 +14,7 @@ class FavoritesController extends Controller
         // Your code here for updating quantity in favorites
         // ...
 
-        return response()->json(['message' => 'Quantity updated successfully']);
+        return response()->json(['message' => 'Quantity berhasil diupdate']);
     }
 
     public function all()
@@ -57,12 +57,12 @@ class FavoritesController extends Controller
                 'produk_id' => $productId,
             ]);
 
-            $message = 'Item added to favorites successfully';
+            $message = 'Produk berhasil ditambahkan ke Favorites';
             return redirect()->back()->with('toast', compact('message'));
         }
 
         // You may want to return a response or redirect here if the product is already in favorites
-        $message = 'Item already in favorites';
+        $message = 'Produk sudah ada di Favorites';
         return redirect()->back()->with('toast', compact('message'));
     }
 
@@ -82,7 +82,7 @@ class FavoritesController extends Controller
         $keranjang->delete();
 
 
-        return response()->json(['message' => 'Product removed from favorites successfully']);
+        return response()->json(['message' => 'Produk berhasil dihapus dari favorites']);
     }
 
     // ... other methods ...

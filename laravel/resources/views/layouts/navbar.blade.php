@@ -167,7 +167,7 @@
                 <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
                     <h5 class="text-uppercase mb-4">About Company</h5>
                     <p>
-                        Yakiniku at home adalah supplier daging yang berbasis di KOta Bojonegoro. Yakiniku at Home menyediakan berbagai macam pilihan daging seperti daging sapi, ayam, ikan, sliced, steak, aneka macam snacks, dan banyak lagi yang memiliki kualitas terbaik dan tersegar.
+                        Yakiniku at home adalah supplier daging yang berbasis di Kota Bojonegoro. Yakiniku at Home menyediakan berbagai macam pilihan daging seperti daging sapi, ayam, ikan, sliced, steak, aneka macam snacks, dan banyak lagi yang memiliki kualitas terbaik dan tersegar.
                     </p>
                     <p>
                        Kami juga menyediakan rental kompor portable dan alat grilling lain untuk memberikan pengalaman BBQ / Grilling yang terbaik.

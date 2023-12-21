@@ -4,25 +4,23 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1 class="mb-4">Keranjang</h1>
+        <h1>Keranjang</h1>
 
         @if (count($keranjangs) > 0)
-            <div class="table-responsive">
-                <table class="table table-unbordered">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Image</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                            <th>Total</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php
-                            $totalHarga = 0;
-                        @endphp
+            <table class="table table-unbordered">
+                <thead>
+                    <tr>
+                        <th>Produk</th>
+                        <th>Gambar</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                        $totalHarga = 0;
+                    @endphp
 
                     @foreach ($keranjangs as $keranjang)
                         <tr>
@@ -52,7 +50,7 @@
                             <td>
                                 <button type="button" class="btn btn-danger"
                                     onclick="removeFromCart({{ $keranjang->id }})">
-                                    Remove
+                                    Hapus
                                 </button>
                             </td>
                         </tr>
@@ -67,7 +65,7 @@
             </table>
 
             <div class="mt-3">
-                <h3>Total Price: Rp {{ number_format($totalHarga, 0, ',', '.') }}</h3>
+                <h3>Total Harga: Rp {{ number_format($totalHarga, 0, ',', '.') }}</h3>
             </div>
 
             <!-- Submit Button with Confirmation -->
@@ -83,7 +81,7 @@
                     var newQuantity = currentQuantity + 1;
 
 
-                    // Periksa apakah newQuantity melebihi stok produk
+// Periksa apakah newQuantity melebihi stok produk
                     if (newQuantity <= {{ $keranjang->produk->stok }}) {
                         $('#input-quantity-' + cartId).val(newQuantity);
                         updateQuantity(cartId, newQuantity);
@@ -94,7 +92,7 @@
                 }
             </script>
         @else
-            <p>Your shopping cart is empty.</p>
+            <p>Keranjang anda kosong, silahkan tambah produk ke keranjang dengan menekan tombol "Add to Cart".</p>
         @endif
 
     </div>
@@ -102,48 +100,52 @@
 
     <script>
         function removeFromCart(cartId) {
-            if (confirm("Are you sure you want to remove this item from the cart?")) {
+            if (confirm("Apakah anda yakin mau menghapus produk dari keranjang?")) {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
 
-                        $.ajax({
-                            url: '/keranjang/remove/' + cartId,
-                            method: 'DELETE',
-                            success: function(response) {
-                                console.log('Produk berhasil dihapus dari keranjang');
-                                location.reload(); // Refresh the page after successful removal
-                            },
-                            error: function(error) {
-                                console.error('Error menghapus dari keranjang', error);
-                            }
-                        });
+                $.ajax({
+                    url: '/keranjang/remove/' + cartId,
+                    method: 'DELETE',
+                    success: function(response) {
+                        console.log('Produk berhasil dihapus dari keranjang');
+                        location.reload(); // Refresh the page after successful removal
+                    },
+                    error: function(error) {
+                        console.error('Produk gagal dihapus dari favorites', error);
                     }
-                }
+                });
+            }
+        }
+    </script>
 
-                function updateQuantity(cartId, newQuantity) {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    $.ajax({
-                        url: '/keranjang/update-quantity/' + cartId,
-                        method: 'PATCH',
-                        data: {
-                            newQuantity: newQuantity
-                        },
-                        success: function(response) {
-                            console.log('Quantity berhasil diupdate');
-                            $('#totalPrice').text('Total Price: Rp ' + response.totalHarga);
-                        },
-                        error: function(error) {
-                            console.error('Error mengupdate quantity', error);
-                        }
-                    });
+    <script>
+        function updateQuantity(cartId, newQuantity) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
+            });
+            $.ajax({
+                url: '/keranjang/update-quantity/' + cartId,
+                method: 'PATCH',
+                data: {
+                    newQuantity: newQuantity
+                },
+                success: function(response) {
+                    console.log('Jumlah berhasil diupdate');
+                    $('#totalPrice').text('Total Price: Rp ' + response.totalHarga);
+                },
+                error: function(error) {
+                    console.error('Gagal mengupdate jumlah', error);
+                }
+            });
+        }
+
+
 
         function decrementQuantity(cartId) {
             var currentQuantity = parseInt($('#input-quantity-' + cartId).val());
@@ -165,16 +167,12 @@
             location.reload();
         }
 
-                function confirmPayment() {
-                    if (confirm("Lanjut ke pembayaran?")) {
-                        document.getElementById("pembayaranForm").submit();
-                    } else {
-                        // If the user clicks "Cancel", do nothing
-                    }
-                }
-            </script>
-        @else
-            <p>Keranjang anda kosong, silahkan menambah produk ke keranjang dengan menekan tombol "Add to Cart".</p>
-        @endif
-    </div>
+function confirmPayment() {
+            if (confirm("Apakah anda yakin mau melanjutkan ke pembayaran?")) {
+                document.getElementById("pembayaranForm").submit();
+            } else {
+                // If the user clicks "Cancel", do nothing
+            }
+        }
+    </script>
 @endsection

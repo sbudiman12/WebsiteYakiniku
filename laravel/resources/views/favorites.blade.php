@@ -31,7 +31,7 @@
                                 <td>
                                     <button type="button" class="btn btn-danger"
                                         onclick="removeFromFavorites({{ $favoriteProduct->id }})">
-                                        Remove
+                                        Hapus
                                     </button>
                                 </td>
                             </tr>
