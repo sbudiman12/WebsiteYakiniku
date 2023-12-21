@@ -6,7 +6,7 @@
 
         @if (count($favoriteProducts) > 0)
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-unbordered">
                     <thead>
                         <tr>
                             <th>Product</th>
@@ -31,7 +31,7 @@
                                 <td>
                                     <button type="button" class="btn btn-danger"
                                         onclick="removeFromFavorites({{ $favoriteProduct->id }})">
-                                        Remove
+                                        Hapus
                                     </button>
                                 </td>
                             </tr>
@@ -46,7 +46,7 @@
 
             <script>
                 function removeFromFavorites(cartId) {
-                    if (confirm("Are you sure you want to remove this item from the list?")) {
+                    if (confirm("Apakah anda yakin menghapus produk ini dari favorites?")) {
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -57,18 +57,18 @@
                             url: '/favorites/remove/' + cartId,
                             method: 'DELETE',
                             success: function(response) {
-                                console.log('Item removed from list successfully');
+                                console.log('Produk berhasil dihapus dari favorites');
                                 location.reload(); // Refresh the page after successful removal
                             },
                             error: function(error) {
-                                console.error('Error removing item from list', error);
+                                console.error('Error menghapus produk dari favorites', error);
                             }
                         });
                     }
                 }
             </script>
         @else
-            <p>Your favorites list is empty.</p>
+            <p>Favorites list anda kosong, silahkan menambahkan produk ke Favorites dengan menekan tombol hati.</p>
         @endif
     </div>
 @endsection

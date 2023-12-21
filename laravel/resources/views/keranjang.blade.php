@@ -4,16 +4,16 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1>Your Shopping Cart</h1>
+        <h1>Keranjang</h1>
 
         @if (count($keranjangs) > 0)
-            <table class="table table-bordered">
+            <table class="table table-unbordered">
                 <thead>
                     <tr>
-                        <th>Product</th>
-                        <th>Image</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
+                        <th>Produk</th>
+                        <th>Gambar</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
                         <th>Total</th>
                     </tr>
                 </thead>
@@ -50,7 +50,7 @@
                             <td>
                                 <button type="button" class="btn btn-danger"
                                     onclick="removeFromCart({{ $keranjang->id }})">
-                                    Remove
+                                    Hapus
                                 </button>
                             </td>
                         </tr>
@@ -65,7 +65,7 @@
             </table>
 
             <div class="mt-3">
-                <h3>Total Price: Rp {{ number_format($totalHarga, 0, ',', '.') }}</h3>
+                <h3>Total Harga: Rp {{ number_format($totalHarga, 0, ',', '.') }}</h3>
             </div>
 
             <!-- Submit Button with Confirmation -->
@@ -81,7 +81,7 @@
                     var newQuantity = currentQuantity + 1;
 
 
-                    // Periksa apakah newQuantity melebihi stok produk
+// Periksa apakah newQuantity melebihi stok produk
                     if (newQuantity <= {{ $keranjang->produk->stok }}) {
                         $('#input-quantity-' + cartId).val(newQuantity);
                         updateQuantity(cartId, newQuantity);
@@ -92,7 +92,7 @@
                 }
             </script>
         @else
-            <p>Your shopping cart is empty.</p>
+            <p>Keranjang anda kosong, silahkan tambah produk ke keranjang dengan menekan tombol "Add to Cart".</p>
         @endif
 
     </div>
@@ -100,7 +100,7 @@
 
     <script>
         function removeFromCart(cartId) {
-            if (confirm("Are you sure you want to remove this item from the cart?")) {
+            if (confirm("Apakah anda yakin mau menghapus produk dari keranjang?")) {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -111,11 +111,11 @@
                     url: '/keranjang/remove/' + cartId,
                     method: 'DELETE',
                     success: function(response) {
-                        console.log('Item removed from cart successfully');
+                        console.log('Produk berhasil dihapus dari keranjang');
                         location.reload(); // Refresh the page after successful removal
                     },
                     error: function(error) {
-                        console.error('Error removing item from cart', error);
+                        console.error('Produk gagal dihapus dari favorites', error);
                     }
                 });
             }
@@ -136,11 +136,11 @@
                     newQuantity: newQuantity
                 },
                 success: function(response) {
-                    console.log('Quantity updated successfully');
+                    console.log('Jumlah berhasil diupdate');
                     $('#totalPrice').text('Total Price: Rp ' + response.totalHarga);
                 },
                 error: function(error) {
-                    console.error('Error updating quantity', error);
+                    console.error('Gagal mengupdate jumlah', error);
                 }
             });
         }
@@ -167,8 +167,8 @@
             location.reload();
         }
 
-        function confirmPayment() {
-            if (confirm("Are you sure you want to proceed with the payment?")) {
+function confirmPayment() {
+            if (confirm("Apakah anda yakin mau melanjutkan ke pembayaran?")) {
                 document.getElementById("pembayaranForm").submit();
             } else {
                 // If the user clicks "Cancel", do nothing

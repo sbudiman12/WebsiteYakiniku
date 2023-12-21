@@ -104,7 +104,7 @@ class KeranjangController extends Controller
         }
 
         // Tampilkan pemberitahuan sebagai toast
-        $message = 'Item added to cart successfully';
+        $message = 'Produk berhasil ditambahkan ke keranjang!';
         return redirect()->back()->with('toast', compact('message'));
     }
 
@@ -146,7 +146,7 @@ class KeranjangController extends Controller
         // Menghapus item di keranjang setelah transaksi selesai
         auth()->user()->keranjang()->delete();
 
-        return redirect('/')->with('success', 'Payment successful! Thank you for your purchase.');
+        return redirect('/')->with('success', 'Pembayaran berhasil! Terimakasih telah berbelanja di YAkiniku at Home!.');
     }
 
     public function removeFromCart($id)
@@ -156,7 +156,7 @@ class KeranjangController extends Controller
         // Hapus item dari keranjang
         $keranjang->delete();
 
-        return response()->json(['message' => 'Item removed from cart successfully']);
+        return response()->json(['message' => 'Produk berhasil dihapus dari keranjang']);
     }
 
 

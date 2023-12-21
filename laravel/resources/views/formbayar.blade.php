@@ -4,22 +4,23 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <div class="container mt-4">
-    <h1 class="mb-4">Payment Confirmation</h1>
+    <h1 class="mb-4">Konfirmasi Pembayaran</h1>
 
     <form action="{{route('pembayaranprocess')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="card mb-4">
+            <div class="card-header cbbg seasalt">        <h2>Keranjang</h2></div>
             <div class="card-body">
-                <h2>Your Shopping Cart</h2>
+
 
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
+                                <th>Produk</th>
+                                <th>Jumlah</th>
+                                <th>Harga</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -83,7 +84,7 @@
 
                 <div class="row mt-3">
                     <div class="col-sm-6">
-                        <h3>Total Barang: Rp {{ number_format($totalHarga, 0, ',', '.') }}</h3>
+                        <h3>Total Harga: Rp {{ number_format($totalHarga, 0, ',', '.') }}</h3>
                     </div>
                     <div class="col-sm-6 text-right">
                         <p class="text-muted" id="tambahan">Delivery Fee: Rp {{$tambahan}}</p>
@@ -94,11 +95,12 @@
         </div>
 
         <div class="card mb-4">
+            <div class="card-header cbbg seasalt"> <h2>Metode Pengiriman</h2></div>
             <div class="card-body">
-                <h2>Delivery Options</h2>
+
 
         <div class="form-group">
-            <label for="delivery">Choose Delivery Option:</label>
+            <label for="delivery">Pilih Metode Pengiriman:</label>
             <select class="form-control" id="delivery" name="delivery" required>
                 <option value="1">Pickup</option>
                 <option value="2">Kurir</option>
@@ -107,14 +109,14 @@
 
         <!-- Address Form -->
         <div class="form-group">
-            <label for="alamat">Delivery Address:</label>
+            <label for="alamat">Alamat Pengiriman:</label>
             <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
         </div>
 
-                <h2>Payment Confirmation</h2>
+                <h2>Konfirmasi Pembayaran</h2>
 
                 <div class="form-group">
-                    <label for="bukti_transfer">Proof of Payment (Image):</label>
+                    <label for="bukti_transfer">Bukti Pembayaran (Image):</label>
                     <input type="file" class="form-control-file" id="bukti_transfer" name="bukti_transfer" accept="image/*" required>
                 </div>
 <br>

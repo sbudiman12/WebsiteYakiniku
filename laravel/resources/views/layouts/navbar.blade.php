@@ -167,18 +167,21 @@
                 <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
                     <h5 class="text-uppercase mb-4">About Company</h5>
                     <p>
-                        Yakiniku at home is a Bojonegoro-based meat dealer. We provide you with the best quality meat of
-                        many variations like beef, chicken, and fish.
+                        Yakiniku at home adalah supplier daging yang berbasis di Kota Bojonegoro. Yakiniku at Home menyediakan berbagai macam pilihan daging seperti daging sapi, ayam, ikan, sliced, steak, aneka macam snacks, dan banyak lagi yang memiliki kualitas terbaik dan tersegar.
                     </p>
                     <p>
-                        We also provide a complete grilling experience with our gas stove rental service and also our
-                        home-made yakiniku sauce.
+                       Kami juga menyediakan rental kompor portable dan alat grilling lain untuk memberikan pengalaman BBQ / Grilling yang terbaik.
                     </p>
+                    <p>
+                       Alamat: Jl. Basuki Rahmat no. 92, Bojonegoro
+                     </p>
                     <div class="mt-4">
                         <a type="button" class="none smol" href="https://www.instagram.com/yakinikuathome_bjn/"><img
                                 src="{{ url('/assets/ig.png') }}" alt="" class="smaller"></a>
-                        <a type="button" class="none smol" href="https://wa.me/6285261735555"><img
+                        <a type="button" class="none smol" href="https://wa.me/6285261731111"><img
                                 src="{{ url('/assets/wa.png') }}" alt="" class="smaller "></a>
+                                <a type="button" class="none smol" href="https://www.google.com/maps?kgmid=/g/11cjpcd_k6&hl=en-ID&kgs=98eaa068d040e73d&shndl=17&shem=optc&q=Teguh+Motor+3+Bojonegoro+Regency&um=1&ie=UTF-8"><img
+                                    src="{{ url('/assets/map.png') }}" alt="" class="smaller "></a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
@@ -186,12 +189,12 @@
                     <table class="table text-center text-white">
                         <tbody class="font-weight-normal">
                             <tr>
-                                <td>Mon - Sat:</td>
-                                <td>9am - 4pm</td>
+                                <td>Senin - Sabtu:</td>
+                                <td>09:00 - 16:00</td>
                             </tr>
                             <tr>
-                                <td>Sunday:</td>
-                                <td>Closed</td>
+                                <td>Minggu:</td>
+                                <td>TUTUP</td>
                             </tr>
                         </tbody>
                     </table>
