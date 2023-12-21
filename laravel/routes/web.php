@@ -24,9 +24,11 @@ use App\Http\Controllers\FavoritesController;
 */
 
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [ProdukController::class, 'showProducts'])->name('home');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('homes');
 
 Route::get('/products', [ProdukController::class, 'all'])->middleware('admin')->name('produks.index');
 
@@ -54,7 +56,6 @@ Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 
-Route::get('/', [ProdukController::class, 'showProducts'])->name('showProduk');
 
 Route::get('/transaksis', [TransaksiController::class, 'all'])->middleware('admin');
 
@@ -128,3 +129,5 @@ Route::post('/favorites/add-to-favorites/{productId}', [FavoritesController::cla
 
 // View favorites
 Route::get('/favorites' ,[FavoritesController::class, 'all'])->middleware('auth');
+
+Auth::routes();
