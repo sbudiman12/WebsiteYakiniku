@@ -54,7 +54,7 @@ Route::delete('/kategoris/{kategori}', [KategoriController::class, 'destroy'])->
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 
-Route::get('/', [ProdukController::class, 'showProducts'])->name('/');
+Route::get('/', [ProdukController::class, 'showProducts'])->name('showProduk');
 
 Route::get('/transaksis', [TransaksiController::class, 'all'])->middleware('admin');
 
@@ -93,9 +93,9 @@ Route::get('/produk-snacks', [ProdukController::class, 'snacks']);
 
 Route::get('/product/{produk}', [ProdukController::class,'related']);
 
-Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment']);
+Route::post('/pembayaran/process', [KeranjangController::class, 'processPayment'])->name('pembayaranprocess');
 
-Route::post('/pembayaran', [KeranjangController::class, 'showPayment']);
+Route::post('/showformpembayaran', [KeranjangController::class, 'showPayment'])->name('lihat.form')->middleware('auth');
 
 
 Route::post('/keranjang/add-to-cart/{productId}', [KeranjangController::class,'addToCart'])->name('keranjang.addToCart')->middleware('auth');
@@ -114,17 +114,17 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 
 // routes/web.php
 
-Route::post('/transaksi', [TransaksiController::class,'view1'])->name('transaksi.detail');
+Route::post('/', [TransaksiController::class,'view1'])->middleware('auth')->name('transaksi.detail');
 
 // // Route to handle the form submission and update the user's profile
 // Route::put('/ndelok/update', [ProfileController::class, 'update'])->name('ndelok.update');
 
 
-Route::get('/product/{id}', 'ProductController@show')->name('product.show');
+Route::get('/product/{id}', [ProdukController::class, 'show'])->name('product.show');
 
 // Route to handle adding a product to favorites
 // Route to handle adding a product to favorites
-Route::post('/favorites/add-to-favorites/{productId}', [FavoritesController::class, 'addToFavorites'])->name('favorites.addToFavorites');
+Route::post('/favorites/add-to-favorites/{productId}', [FavoritesController::class, 'addToFavorites'])->name('favorites.addToFavorites')->middleware();
 
 // View favorites
 Route::get('/favorites' ,[FavoritesController::class, 'all'])->middleware('auth');
