@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('produk_id');
+            $table->integer('jumlah');
 
 
             $table->timestamps();

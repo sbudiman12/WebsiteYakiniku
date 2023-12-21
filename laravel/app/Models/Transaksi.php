@@ -15,5 +15,23 @@ class Transaksi extends Model
         'user_id',
         'status_id',
         'delivery_id',
+        'alamat'
     ];
+
+    public function user() {
+        return $this->belongsTo(User::class);
+
+    }
+
+    public function status() {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function transaksi_produk() {
+        return $this->hasMany(Transaksi_Produk::class);
+    }
+
+    public function delivery() {
+        return $this->belongsTo(Delivery::class);
+    }
 }

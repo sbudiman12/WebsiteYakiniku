@@ -11,8 +11,15 @@ class Transaksi_Produk extends Model
 
     protected $fillable = [
         'product_id',
-        'transaction_id',
+        'transaksi_id',
         'harga',
         'jumlah',
     ];
+
+    public function transaksi() {
+        return $this->belongsTo(Transaksi::class);
+    }
+    public function produk() {
+        return $this->belongsTo(Produk::class);
+    }
 }
