@@ -34,6 +34,25 @@ class TransaksiController extends Controller
         return view('admin/viewtransaksi', compact('transaksi', 'pa'));
     }
 
+    public function view1(Request $request)
+    {
+
+        $transactionId = $request->input('transaction_id');
+
+        // Find the transaction based on the provided ID
+        $transaksi = Transaksi::find($transactionId);
+        // Eager load the necessary relationships
+        $transaksi->load('transaksi_produk');
+
+        // Access the transaksi_produk relationship and then the produk relationship
+        $pa = $transaksi->transaksi_produk;
+
+        $pa->load('produk');
+
+
+        return view('lihattransaksi', compact('transaksi', 'pa'));
+    }
+
     // TransaksiController.php
 
     public function updateStatus(Transaksi $transaksi)

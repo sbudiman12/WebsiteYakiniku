@@ -40,6 +40,40 @@
                         </form>
                     </div>
                 </div>
+
+                
+                <div class="card mt-4">
+                    <div class="card-header cbbg seasalt">Transaction History</div>
+                    <div class="card-body">
+                        @if (!is_null(auth()->user()->transaksis) && count(auth()->user()->transaksis) > 0)
+                            <ul>
+                                @foreach (auth()->user()->transaksis->sortByDesc('tanggal') as $transaction)
+                                <li>
+                                    <form action="{{ route('transaksi.detail') }}" method="POST" class="transaction-form">
+                                        @csrf
+                                        <input type="hidden" name="transaction_id" value="{{ $transaction->id }}">
+                                        <button type="submit" class="btn-link">
+                                            <span class="transaction-info">
+                                                Transaction ID: {{ $transaction->id }}<br>
+                                               
+                                            </span>
+
+                                            
+                                        </button>
+                                        <br>
+
+                                        Status: {{ $transaction->status->status_name }}<br>
+                                        Date: {{ $transaction->tanggal }}<br>
+                                    </form>
+                                </li>
+                                <hr>
+                                @endforeach
+                            </ul>
+                        @else
+                            <p>No transactions available.</p>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>

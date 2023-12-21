@@ -112,6 +112,10 @@ Route::put('/profile/update', [ProfileController::class, 'update'])->name('profi
 // // Route to display the edit form for the user's profile
 // Route::get('/ndelok/edit', [ProfileController::class, 'edit'])->name('ndelok.edit');
 
+// routes/web.php
+
+Route::post('/transaksi', [TransaksiController::class,'view1'])->name('transaksi.detail');
+
 // // Route to handle the form submission and update the user's profile
 // Route::put('/ndelok/update', [ProfileController::class, 'update'])->name('ndelok.update');
 
