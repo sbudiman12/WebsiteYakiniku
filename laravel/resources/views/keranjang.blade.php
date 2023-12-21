@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="container mt-4">
-        <h1 class="mb-4">Your Shopping Cart</h1>
+        <h1 class="mb-4">Keranjang</h1>
 
         @if (count($keranjangs) > 0)
             <div class="table-responsive">
-                <table class="table table-bordered">
+                <table class="table table-unbordered">
                     <thead>
                         <tr>
                             <th>Product</th>
@@ -82,11 +82,11 @@
                             url: '/keranjang/remove/' + cartId,
                             method: 'DELETE',
                             success: function(response) {
-                                console.log('Item removed from cart successfully');
+                                console.log('Produk berhasil dihapus dari keranjang');
                                 location.reload(); // Refresh the page after successful removal
                             },
                             error: function(error) {
-                                console.error('Error removing item from cart', error);
+                                console.error('Error menghapus dari keranjang', error);
                             }
                         });
                     }
@@ -105,11 +105,11 @@
                             newQuantity: newQuantity
                         },
                         success: function(response) {
-                            console.log('Quantity updated successfully');
+                            console.log('Quantity berhasil diupdate');
                             $('#totalPrice').text('Total Price: Rp ' + response.totalHarga);
                         },
                         error: function(error) {
-                            console.error('Error updating quantity', error);
+                            console.error('Error mengupdate quantity', error);
                         }
                     });
                 }
@@ -149,7 +149,7 @@
                 }
 
                 function confirmPayment() {
-                    if (confirm("Are you sure you want to proceed with the payment?")) {
+                    if (confirm("Lanjut ke pembayaran?")) {
                         document.getElementById("pembayaranForm").submit();
                     } else {
                         // If the user clicks "Cancel", do nothing
@@ -157,7 +157,7 @@
                 }
             </script>
         @else
-            <p>Your shopping cart is empty.</p>
+            <p>Keranjang anda kosong, silahkan menambah produk ke keranjang dengan menekan tombol "Add to Cart".</p>
         @endif
     </div>
 @endsection

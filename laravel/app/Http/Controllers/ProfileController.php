@@ -29,7 +29,10 @@ class ProfileController extends Controller
         ]);
 
         $user->update($validatedData);
+   $message = 'Item added to cart successfully';
 
-        return redirect()->route('profile.show')->with('success', 'Profile updated successfully!');
+   return redirect()->route('profile.show')->with('toast', compact('message'));
+
+
     }
 }

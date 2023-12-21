@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header cbbg seasalt">Profile</div>
+                    <div class="card-header cbbg seasalt">Edit Profile</div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('profile.update') }}">
@@ -13,7 +13,7 @@
                             @method('PUT')
 
                             <div class="form-group">
-                                <label for="name">Name:</label>
+                                <label for="name">Nama:</label>
                                 <input type="text" id="name" name="name" value="{{ auth()->user()->name }}" class="form-control" required>
                             </div>
 
@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="phone_number">Phone Number:</label>
+                                <label for="phone_number">No. Telp:</label>
                                 <input type="tel" id="phone_number" name="phone_number" value="{{ auth()->user()->phone_number }}" class="form-control" required>
                             </div>
 
@@ -41,9 +41,9 @@
                     </div>
                 </div>
 
-                
+
                 <div class="card mt-4">
-                    <div class="card-header cbbg seasalt">Transaction History</div>
+                    <div class="card-header cbbg seasalt">Sejarah Transaksi</div>
                     <div class="card-body">
                         @if (!is_null(auth()->user()->transaksis) && count(auth()->user()->transaksis) > 0)
                             <ul>
@@ -52,25 +52,25 @@
                                     <form action="{{ route('transaksi.detail') }}" method="POST" class="transaction-form">
                                         @csrf
                                         <input type="hidden" name="transaction_id" value="{{ $transaction->id }}">
-                                        <button type="submit" class="btn-link">
+                                        <button type="submit" class="btn btn-primary">
                                             <span class="transaction-info">
-                                                Transaction ID: {{ $transaction->id }}<br>
-                                               
+                                               ID Transaksi: {{ $transaction->id }}<br>
+
                                             </span>
 
-                                            
+
                                         </button>
                                         <br>
 
-                                        Status: {{ $transaction->status->status_name }}<br>
-                                        Date: {{ $transaction->tanggal }}<br>
+                                        Status: <b>{{ $transaction->status->status_name }}</b><br>
+                                        Tanggal: {{ $transaction->tanggal }}<br>
                                     </form>
                                 </li>
                                 <hr>
                                 @endforeach
                             </ul>
                         @else
-                            <p>No transactions available.</p>
+                            <p>Belum ada transaksi.</p>
                         @endif
                     </div>
                 </div>
@@ -78,3 +78,15 @@
         </div>
     </div>
 @endsection
+@if(session('toast'))
+    <script>
+        Toastify({
+            text: "{{ session('toast.message') }}",
+            duration: 3000,
+            close: true,
+            gravity: "bottom", // Adjust as needed
+            position: "right", // Adjust as needed
+            backgroundColor: "#28a745", // Green color, adjust as needed
+        }).showToast();
+    </script>
+@endif

@@ -95,10 +95,10 @@
 
         <div class="card mb-4">
             <div class="card-body">
-                <h2>Delivery Options</h2>
+                <h2>Metode Pengiriman</h2>
 
         <div class="form-group">
-            <label for="delivery">Choose Delivery Option:</label>
+            <label for="delivery">Pilih Metode Pengiriman:</label>
             <select class="form-control" id="delivery" name="delivery" required>
                 <option value="1">Pickup</option>
                 <option value="2">Kurir</option>
@@ -107,14 +107,14 @@
 
         <!-- Address Form -->
         <div class="form-group">
-            <label for="alamat">Delivery Address:</label>
+            <label for="alamat">Alamat Pengiriman:</label>
             <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
         </div>
 
-                <h2>Payment Confirmation</h2>
+                <h2>KOnfirmasi Pembayaran</h2>
 
                 <div class="form-group">
-                    <label for="bukti_transfer">Proof of Payment (Image):</label>
+                    <label for="bukti_transfer">Bukti Pembayaran (Image):</label>
                     <input type="file" class="form-control-file" id="bukti_transfer" name="bukti_transfer" accept="image/*" required>
                 </div>
 <br>
