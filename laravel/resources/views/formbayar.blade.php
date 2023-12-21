@@ -4,7 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <div class="container mt-4">
-    <h1 class="mb-4">Payment Confirmation</h1>
+    <h1 class="mb-4">Konfirmasi Pembayaran</h1>
 
     <form action="{{route('pembayaranprocess')}}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -84,7 +84,7 @@
 
                 <div class="row mt-3">
                     <div class="col-sm-6">
-                        <h3>Total Barang: Rp {{ number_format($totalHarga, 0, ',', '.') }}</h3>
+                        <h3>Total Harga: Rp {{ number_format($totalHarga, 0, ',', '.') }}</h3>
                     </div>
                     <div class="col-sm-6 text-right">
                         <p class="text-muted" id="tambahan">Delivery Fee: Rp {{$tambahan}}</p>
