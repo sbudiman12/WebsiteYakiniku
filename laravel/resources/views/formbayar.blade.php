@@ -6,7 +6,7 @@
 <div class="container mt-4">
     <h1 class="mb-4">Payment Confirmation</h1>
 
-    <form action="/pembayaran/process" method="POST" enctype="multipart/form-data">
+    <form action="{{route('pembayaranprocess')}}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="card mb-4">
